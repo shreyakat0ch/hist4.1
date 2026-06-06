@@ -1,4 +1,4 @@
-# BiMamba SSM — Cell-Conditioned Sequence Modeling
+# BiMamba SSM - Cell-Conditioned Sequence Modeling
 
 The core sequence modeling engine of Deep-H is a stack of 4 **Bidirectional Mamba-2** (BiMamba) layers. Mamba-2 is a state-of-the-art selective state space model that processes sequences in linear time O(L) while maintaining a theoretically infinite receptive field.
 
@@ -50,7 +50,7 @@ dna_cond = (1 + gamma) * dna_feat + beta
 
 ## 2. Bidirectional Scanning
 
-DNA is symmetric — a peak at position $X$ is influenced by sequence features both upstream and downstream. Mamba is inherently unidirectional, so Deep-H runs two Mamba blocks in parallel:
+DNA is symmetric - a peak at position $X$ is influenced by sequence features both upstream and downstream. Mamba is inherently unidirectional, so Deep-H runs two Mamba blocks in parallel:
 
 1. **Forward:** Scans $5' \rightarrow 3'$
 2. **Backward:** Sequence is flipped, scanned $5' \rightarrow 3'$, then output is flipped back.

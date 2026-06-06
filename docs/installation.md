@@ -27,7 +27,7 @@ This guide covers everything you need to set up Deep-H from scratch on a machine
   </div>
 </div>
 
-## Step 1 — Create a Conda Environment
+## Step 1 - Create a Conda Environment
 
 !!! tip "Why Conda?"
     The `mamba-ssm` package requires CUDA compilation and works best in an isolated environment.
@@ -41,7 +41,7 @@ conda activate heron
 conda install -c conda-forge cudatoolkit=11.8 -y
 ```
 
-## Step 2 — Install PyTorch
+## Step 2 - Install PyTorch
 
 Install PyTorch with CUDA support matching your system's CUDA version:
 
@@ -66,7 +66,7 @@ python -c "import torch; print(f'PyTorch {torch.__version__}, CUDA: {torch.cuda.
 !!! warning "CUDA Verification"
     If `torch.cuda.is_available()` returns `False`, your CUDA toolkit or GPU driver may need updating. Deep-H requires a working GPU for training.
 
-## Step 3 — Install Mamba-2 (State Space Model)
+## Step 3 - Install Mamba-2 (State Space Model)
 
 Mamba-2 is the core sequence model used in Deep-H's bidirectional encoder:
 
@@ -77,7 +77,7 @@ pip install mamba-ssm
 !!! note "Compilation Time"
     `mamba-ssm` compiles CUDA kernels during installation. This may take **5–10 minutes** and requires a working `nvcc` (NVIDIA CUDA compiler). If compilation fails, ensure your CUDA toolkit matches your PyTorch CUDA version.
 
-## Step 4 — Install Remaining Dependencies
+## Step 4 - Install Remaining Dependencies
 
 ```bash
 pip install numpy pandas scikit-learn tqdm pyfaidx
@@ -93,7 +93,7 @@ pip install numpy pandas scikit-learn tqdm pyfaidx
 | `tqdm` | ≥4.64 | Progress bars |
 | `pyfaidx` | ≥0.7 | Fast indexed FASTA access |
 
-## Step 5 — Prepare Reference Data
+## Step 5 - Prepare Reference Data
 
 Deep-H requires two external reference files:
 
@@ -126,7 +126,7 @@ export HISTONE_GTF_PATH="/path/to/hg38.knownGene.gtf"
 export HISTONE_DATA_DIR="/path/to/chip_seq_data"
 ```
 
-## Step 6 — Prepare ChIP-seq Data
+## Step 6 - Prepare ChIP-seq Data
 
 Deep-H trains on ChIP-seq BED files from the ENCODE project. The data directory should be structured as:
 
@@ -144,9 +144,9 @@ data/
 ```
 
 !!! info "Missing Marks Are Handled"
-    Deep-H uses a **mask-based loss** — cell lines that are missing certain histone marks are automatically excluded from those marks' loss computation. You do not need complete data for all 4 marks.
+    Deep-H uses a **mask-based loss** - cell lines that are missing certain histone marks are automatically excluded from those marks' loss computation. You do not need complete data for all 4 marks.
 
-## Step 7 — Run Preprocessing
+## Step 7 - Run Preprocessing
 
 ```bash
 # Build the cell peak index and RNA maps
@@ -155,15 +155,15 @@ python data_pipeline.py
 
 This creates:
 
-- `processed/cell_peak_indexes.pkl` — Indexed peak locations for all cell lines
-- `processed/rna_map.pkl` — Cell-line RNA expression vectors
-- `processed/cell_order.json` — Canonical ordering for train/val/test split
-- `processed/genome_hg38.bin` — Binary genome cache for fast sequence lookup
+- `processed/cell_peak_indexes.pkl` - Indexed peak locations for all cell lines
+- `processed/rna_map.pkl` - Cell-line RNA expression vectors
+- `processed/cell_order.json` - Canonical ordering for train/val/test split
+- `processed/genome_hg38.bin` - Binary genome cache for fast sequence lookup
 
 ## Verify Installation
 
 ```bash
-# Quick smoke test — trains for 1 batch
+# Quick smoke test - trains for 1 batch
 python smoke_train.py
 ```
 

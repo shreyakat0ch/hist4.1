@@ -1,4 +1,4 @@
-# Data Pipeline — Overview
+# Data Pipeline - Overview
 
 Deep-H's data pipeline transforms raw biological data into model-ready tensors. This page provides a high-level overview; subsequent pages dive into each stage.
 

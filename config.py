@@ -31,10 +31,10 @@ os.makedirs(PLOTS_DIR, exist_ok=True)
 #   ENHANCING marks  → chromatin open, TFs freely bind
 #   INHIBITING marks → chromatin compacted, TFs blocked
 TARGET_MARKS = [
-    "H3K27ac",   # ENHANCES TF binding — active enhancers + promoters
-    "H3K4me3",   # ENHANCES TF binding — active promoters (sharp, sequence-driven)
-    "H3K27me3",  # INHIBITS TF binding — Polycomb repression
-    "H3K9me3",   # INHIBITS TF binding — constitutive heterochromatin
+    "H3K27ac",   # ENHANCES TF binding - active enhancers + promoters
+    "H3K4me3",   # ENHANCES TF binding - active promoters (sharp, sequence-driven)
+    "H3K27me3",  # INHIBITS TF binding - Polycomb repression
+    "H3K9me3",   # INHIBITS TF binding - constitutive heterochromatin
 ]
 NUM_MARKS = len(TARGET_MARKS)  # = 4
 
@@ -62,7 +62,7 @@ MAMBA_EXPAND = 2      # Inner dimension expansion factor
 DROPOUT = 0.3
 
 # RNA Encoder (MLP)
-RNA_HIDDEN_DIM = 512  # Keep at 512 — RNA compression is independent of DNA width
+RNA_HIDDEN_DIM = 512  # Keep at 512 - RNA compression is independent of DNA width
 
 # Cross-Attention: DNA positions query RNA tokens for position-specific
 # cell-type conditioning. K tokens are projected from the RNA embedding.
@@ -77,7 +77,7 @@ RNA_ABLATION = False
 # Mark-specific context pooling: the shared encoder sees the full WINDOW_SIZE,
 # but each mark head pools over a different central span of encoded tokens.
 MARK_CONTEXT_BP = {
-    "H3K27ac": 16384,   # Widened from 8192 — enhancers are diffuse, need more context
+    "H3K27ac": 16384,   # Widened from 8192 - enhancers are diffuse, need more context
     "H3K4me3": 4096,
     "H3K27me3": 32768,
     "H3K9me3": 16384,

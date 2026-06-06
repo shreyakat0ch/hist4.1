@@ -1,4 +1,4 @@
-# DNA Encoder — Multi-Resolution CNN Stem
+# DNA Encoder - Multi-Resolution CNN Stem
 
 The DNA encoder is a **three-branch convolutional stem** that extracts features at multiple spatial scales simultaneously. This design captures motifs from single transcription factor binding sites (~10 bp) to entire regulatory domains (~10 kb).
 
@@ -38,7 +38,7 @@ flowchart LR
     style OUT fill:#FFE4E6,stroke:#FB7185,color:#333
 ```
 
-## Branch A — Motif Scale
+## Branch A - Motif Scale
 
 Focuses on **short-range patterns** like transcription factor binding motifs (6–15 bp):
 
@@ -58,9 +58,9 @@ self.cnn_a = nn.Sequential(
 ```
 
 !!! info "Receptive Field"
-    Each output token in Branch A has a receptive field of **~240 bp** — perfect for detecting clusters of TF binding sites within a promoter.
+    Each output token in Branch A has a receptive field of **~240 bp** - perfect for detecting clusters of TF binding sites within a promoter.
 
-## Branch B — Nucleosome Scale
+## Branch B - Nucleosome Scale
 
 Captures **medium-range patterns** like nucleosome positioning (147–200 bp):
 
@@ -80,9 +80,9 @@ self.cnn_b = nn.Sequential(
 !!! tip "Wider Strides"
     By using stride=8 instead of stride=4, Branch B sees a wider context per step. The larger first-layer kernel (k=15) at stride=8 captures the ~147 bp periodicity of nucleosome arrays.
 
-## Branch C — Domain Scale
+## Branch C - Domain Scale
 
-Captures **long-range patterns** spanning kilobases — important for broad repressive marks:
+Captures **long-range patterns** spanning kilobases - important for broad repressive marks:
 
 ```python
 self.cnn_c = nn.Sequential(
@@ -98,7 +98,7 @@ self.cnn_c = nn.Sequential(
 ```
 
 !!! note "Largest Kernel"
-    The initial k=31 convolution in Branch C spans ~31 bp in the first layer, but after strides accumulate, each output token sees a receptive field of **>2,000 bp** — capturing features at the kilobase scale relevant to H3K27me3 and H3K9me3 domains.
+    The initial k=31 convolution in Branch C spans ~31 bp in the first layer, but after strides accumulate, each output token sees a receptive field of **>2,000 bp** - capturing features at the kilobase scale relevant to H3K27me3 and H3K9me3 domains.
 
 ## Merge Projection
 

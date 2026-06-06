@@ -2,7 +2,7 @@
 
 Once Deep-H is trained, you can use the suite of inference scripts to evaluate its performance, predict marks on new sequences, and generate visualizations.
 
-## `predict_and_compare.py` — Virtual ChIP-seq
+## `predict_and_compare.py` - Virtual ChIP-seq
 
 Generates beautiful, high-resolution genome browser-style tracks comparing Deep-H's predictions to ground truth across large contiguous genomic regions.
 
@@ -17,4 +17,4 @@ python predict_and_compare.py
 4. Highlights the spatial track head's binary predictions as colored bars.
 
 !!! example "Use Case"
-    This script is perfect for generating figures for papers or presentations. It visually demonstrates that Deep-H doesn't just get the math right — it accurately draws the epigenomic landscape.
+    This script is perfect for generating figures for papers or presentations. It visually demonstrates that Deep-H doesn't just get the math right - it accurately draws the epigenomic landscape.

@@ -55,7 +55,7 @@ For each of the 4 histone marks, the target is the **log₂(signal + 1)** value 
 ```python
 raw_target = self._cell_index[cell].lookup_signal(
     chrom, start, start + config.WINDOW_SIZE
-)  # [4] — one value per mark
+)  # [4] - one value per mark
 ```
 
 !!! note "Why log₂(signal + 1)?"
@@ -70,8 +70,8 @@ track_target, track_valid = self._cell_index[cell].lookup_track(
     chrom, start, start + config.WINDOW_SIZE,
     bin_size=config.TRACK_BIN_SIZE  # 64 bp
 )
-# track_target: [4, 512] — binary (0/1)
-# track_valid:  [4]      — which marks have BED data
+# track_target: [4, 512] - binary (0/1)
+# track_valid:  [4]      - which marks have BED data
 ```
 
 ```

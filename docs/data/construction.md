@@ -1,6 +1,6 @@
 # Data Construction
 
-This page explains how Deep-H constructs its training dataset from raw biological data — covering the three data sources and the window sampling strategy that balances peak-rich and background regions.
+This page explains how Deep-H constructs its training dataset from raw biological data - covering the three data sources and the window sampling strategy that balances peak-rich and background regions.
 
 ## Raw Data Sources
 
@@ -11,7 +11,7 @@ Deep-H requires three types of input data:
 The human reference genome provides the DNA sequence context for every training window.
 
 ```
-hg38.fa — 3.1 billion base pairs
+hg38.fa - 3.1 billion base pairs
 ├── chr1  (248,956,422 bp)
 ├── chr2  (242,193,529 bp)
 ├── ...
@@ -19,7 +19,7 @@ hg38.fa — 3.1 billion base pairs
 ```
 
 !!! info "Genome Cache"
-    For speed, Deep-H pre-converts the FASTA into a **binary cache** (`genome_hg38.bin`) at first run. This enables O(1) random access to any genomic coordinate — critical for the DataLoader's 16 parallel workers.
+    For speed, Deep-H pre-converts the FASTA into a **binary cache** (`genome_hg38.bin`) at first run. This enables O(1) random access to any genomic coordinate - critical for the DataLoader's 16 parallel workers.
 
     ```python
     # genome_cache.py
@@ -78,7 +78,7 @@ chr1    180700   181200   .    3.8    .    ...
 </div>
 
 !!! warning "Not All Marks Available"
-    Some cell lines only have data for 1–3 of the 4 marks. Deep-H handles this gracefully with a **validity mask** — missing marks are excluded from loss computation during training.
+    Some cell lines only have data for 1–3 of the 4 marks. Deep-H handles this gracefully with a **validity mask** - missing marks are excluded from loss computation during training.
 
 ---
 
@@ -146,7 +146,7 @@ Without oversampling, the training distribution is heavily skewed:
 | H3K9me3 | 150 | <1% | 25% |
 
 !!! tip "Key Insight"
-    Oversampling with replacement + random offset augmentation (±2000 bp) means the model sees the same peak **multiple times** but with **different surrounding DNA context** each time — preventing memorization while ensuring rare marks get adequate training signal.
+    Oversampling with replacement + random offset augmentation (±2000 bp) means the model sees the same peak **multiple times** but with **different surrounding DNA context** each time - preventing memorization while ensuring rare marks get adequate training signal.
 
 ### Cache Validation
 

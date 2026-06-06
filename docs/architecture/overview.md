@@ -1,4 +1,4 @@
-# Model Architecture — Overview
+# Model Architecture - Overview
 
 Deep-H's architecture is a **multi-modal fusion network** that combines genomic DNA features with cell-type RNA expression to predict histone modifications. The model is defined in `model.py` as the `ChromaRegressor` class.
 
@@ -75,7 +75,7 @@ Deep-H's key innovation is injecting cell-type identity at **three distinct leve
     <h3>Per-Layer FiLM Conditioning</h3>
     <p><strong>Where:</strong> Before each of the 4 BiMamba layers.<br/>
     <strong>How:</strong> RNA → γ, β → affine transform on DNA features.<br/>
-    <strong>Why:</strong> Applies the <em>same</em> cell-type modulation to every DNA position — teaches the model coarse cell-type-specific patterns.</p>
+    <strong>Why:</strong> Applies the <em>same</em> cell-type modulation to every DNA position - teaches the model coarse cell-type-specific patterns.</p>
     <span class="chip chip-coral">Global modulation</span>
   </div>
   <div class="feature-card turquoise">
@@ -113,7 +113,7 @@ Deep-H's key innovation is injecting cell-type identity at **three distinct leve
 
 Explore each component in depth:
 
-- **[DNA Encoder →](dna_encoder.md)** — Multi-resolution CNN stem
-- **[RNA Encoder →](rna_encoder.md)** — MLP compression of gene expression
-- **[BiMamba SSM →](bimamba.md)** — Bidirectional state space model with FiLM
-- **[Prediction Heads →](heads.md)** — Scalar and track output heads
+- **[DNA Encoder →](dna_encoder.md)** - Multi-resolution CNN stem
+- **[RNA Encoder →](rna_encoder.md)** - MLP compression of gene expression
+- **[BiMamba SSM →](bimamba.md)** - Bidirectional state space model with FiLM
+- **[Prediction Heads →](heads.md)** - Scalar and track output heads
