@@ -4,12 +4,10 @@ hide:
   - toc
 ---
 
-<div class="hero-section">
-
 # 🧬 Deep-H
 
 <p class="hero-subtitle">
-<strong>H</strong>istone <strong>E</strong>pigenomic <strong>R</strong>egressor <strong>O</strong>rchestrated by <strong>N</strong>eural-networks — A cell-type-aware deep learning framework that predicts histone modification landscapes from DNA sequence and RNA expression profiles.
+A cell-type-aware deep learning framework that predicts histone modification landscapes from DNA sequence and RNA expression profiles.
 </p>
 
 <div class="hero-badges">
