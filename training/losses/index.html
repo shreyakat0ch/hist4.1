@@ -29,7 +29,7 @@
     
     
       
-        <title>Loss Functions - HERON — Histone Epigenomic Regressor</title>
+        <title>Loss Functions - Deep-H — Histone Epigenomic Regressor</title>
       
     
     
@@ -98,7 +98,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="HERON — Histone Epigenomic Regressor" class="md-header__button md-logo" aria-label="HERON — Histone Epigenomic Regressor" data-md-component="logo">
+    <a href="../.." title="Deep-H — Histone Epigenomic Regressor" class="md-header__button md-logo" aria-label="Deep-H — Histone Epigenomic Regressor" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 2h2v2c0 1.44.68 2.61 1.88 3.78.86.83 2.01 1.63 3.21 2.42l-1.83 1.19C8.27 10.72 7.31 10 6.5 9.21 5.07 7.82 4 6.1 4 4zm14 0h2v2c0 2.1-1.07 3.82-2.5 5.21-1.41 1.38-3.21 2.52-4.96 3.63-1.75 1.12-3.45 2.21-4.66 3.38C6.68 17.39 6 18.56 6 20v2H4v-2c0-2.1 1.07-3.82 2.5-5.21 1.41-1.38 3.21-2.52 4.96-3.63 1.75-1.12 3.45-2.21 4.66-3.38C17.32 6.61 18 5.44 18 4zm-3.26 10.61c.99.67 1.95 1.39 2.76 2.18C18.93 16.18 20 17.9 20 20v2h-2v-2c0-1.44-.68-2.61-1.88-3.78-.86-.83-2.01-1.63-3.21-2.42zM7 3h10v1l-.06.5H7.06L7 4zm.68 3h8.64c-.24.34-.52.69-.9 1.06l-.51.44H9.07l-.49-.44c-.38-.37-.66-.72-.9-1.06m1.41 10.5h5.84l.49.44c.38.37.66.72.9 1.06H7.68c.24-.34.52-.69.9-1.06zm-2.03 3h9.88l.06.5v1H7v-1z"/></svg>
@@ -112,7 +112,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            HERON — Histone Epigenomic Regressor
+            Deep-H — Histone Epigenomic Regressor
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -352,13 +352,13 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="HERON — Histone Epigenomic Regressor" class="md-nav__button md-logo" aria-label="HERON — Histone Epigenomic Regressor" data-md-component="logo">
+    <a href="../.." title="Deep-H — Histone Epigenomic Regressor" class="md-nav__button md-logo" aria-label="Deep-H — Histone Epigenomic Regressor" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 2h2v2c0 1.44.68 2.61 1.88 3.78.86.83 2.01 1.63 3.21 2.42l-1.83 1.19C8.27 10.72 7.31 10 6.5 9.21 5.07 7.82 4 6.1 4 4zm14 0h2v2c0 2.1-1.07 3.82-2.5 5.21-1.41 1.38-3.21 2.52-4.96 3.63-1.75 1.12-3.45 2.21-4.66 3.38C6.68 17.39 6 18.56 6 20v2H4v-2c0-2.1 1.07-3.82 2.5-5.21 1.41-1.38 3.21-2.52 4.96-3.63 1.75-1.12 3.45-2.21 4.66-3.38C17.32 6.61 18 5.44 18 4zm-3.26 10.61c.99.67 1.95 1.39 2.76 2.18C18.93 16.18 20 17.9 20 20v2h-2v-2c0-1.44-.68-2.61-1.88-3.78-.86-.83-2.01-1.63-3.21-2.42zM7 3h10v1l-.06.5H7.06L7 4zm.68 3h8.64c-.24.34-.52.69-.9 1.06l-.51.44H9.07l-.49-.44c-.38-.37-.66-.72-.9-1.06m1.41 10.5h5.84l.49.44c.38.37.66.72.9 1.06H7.68c.24-.34.52-.69.9-1.06zm-2.03 3h9.88l.06.5v1H7v-1z"/></svg>
 
     </a>
-    HERON — Histone Epigenomic Regressor
+    Deep-H — Histone Epigenomic Regressor
   </label>
   
     <div class="md-nav__source">
@@ -1154,8 +1154,8 @@
 
 
 <h1 id="loss-functions">Loss Functions<a class="headerlink" href="#loss-functions" title="Permanent link">&para;</a></h1>
-<p>HERON is a multi-task network predicting 4 histone marks simultaneously. Because some cell lines are missing data for certain marks, the loss functions must dynamically mask out invalid targets.</p>
-<p>HERON optimizes a <strong>Hybrid Loss</strong> that combines three distinct components.</p>
+<p>Deep-H is a multi-task network predicting 4 histone marks simultaneously. Because some cell lines are missing data for certain marks, the loss functions must dynamically mask out invalid targets.</p>
+<p>Deep-H optimizes a <strong>Hybrid Loss</strong> that combines three distinct components.</p>
 <h2 id="1-masked-huber-loss-scalar">1. Masked Huber Loss (Scalar)<a class="headerlink" href="#1-masked-huber-loss-scalar" title="Permanent link">&para;</a></h2>
 <p>The primary loss for predicting peak intensity <code>log2(signal + 1)</code>. </p>
 <p>We use Huber Loss (Smooth L1) instead of MSE because it is less sensitive to extreme outliers. ChIP-seq signals can occasionally have massive, artefactual spikes; Huber acts like MSE for small errors and L1 for large errors, preventing these spikes from dominating the gradient.</p>
@@ -1205,7 +1205,7 @@
 </div>
 <h2 id="per-mark-weighting">Per-Mark Weighting<a class="headerlink" href="#per-mark-weighting" title="Permanent link">&para;</a></h2>
 <p>Not all histone marks are equally difficult to learn. Repressive marks (H3K27me3) span massive 30kb+ domains and have low signal-to-noise ratios compared to sharp H3K4me3 promoters.</p>
-<p>HERON applies a static multiplier to the loss for specific marks to focus network capacity:</p>
+<p>Deep-H applies a static multiplier to the loss for specific marks to focus network capacity:</p>
 <p><div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># [H3K27ac, H3K4me3, H3K27me3, H3K9me3]</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">MARK_LOSS_WEIGHTS</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
 </span></code></pre></div>
