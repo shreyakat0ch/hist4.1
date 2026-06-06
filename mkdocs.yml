@@ -1,0 +1,91 @@
+site_name: "HERON — Histone Epigenomic Regressor"
+site_description: "A cell-type-aware deep learning model for predicting histone modifications from DNA sequence and RNA expression"
+site_author: "Shreya"
+site_url: "https://shreya1.github.io/hist4.1/"
+
+repo_url: "https://github.com/shreya1/hist4.1"
+repo_name: "shreya1/hist4.1"
+
+theme:
+  name: material
+  custom_dir: docs/overrides
+  palette:
+    - scheme: default
+      primary: white
+      accent: deep purple
+  font:
+    text: Inter
+    code: JetBrains Mono
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.instant
+    - navigation.tracking
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - toc.follow
+    - search.suggest
+    - search.highlight
+  icon:
+    repo: fontawesome/brands/github
+    logo: material/dna
+
+extra_css:
+  - stylesheets/extra.css
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+extra_javascript:
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+nav:
+  - Home: index.md
+  - Installation: installation.md
+  - Data Pipeline:
+    - Overview: data/overview.md
+    - Data Construction: data/construction.md
+    - Feature Engineering: data/features.md
+  - Model Architecture:
+    - Overview: architecture/overview.md
+    - DNA Encoder: architecture/dna_encoder.md
+    - RNA Encoder: architecture/rna_encoder.md
+    - BiMamba SSM: architecture/bimamba.md
+    - Prediction Heads: architecture/heads.md
+  - Training:
+    - Training Pipeline: training/pipeline.md
+    - Loss Functions: training/losses.md
+    - Configuration: training/config.md
+  - Inference: inference.md
