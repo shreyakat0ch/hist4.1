@@ -89,13 +89,13 @@ Deep-H is an advanced deep learning framework designed to predict **four key his
 ## Why Deep-H?
 
 !!! tip "Cell-Type Awareness"
-    Unlike models that only see DNA, Deep-H conditions on **RNA expression** at three levels of the network — enabling it to predict histone marks for **any cell type**, not just the ones it was trained on.
+    Unlike models that only see DNA, Deep-H conditions on **RNA expression** at three levels of the network - enabling it to predict histone marks for **any cell type**, not just the ones it was trained on.
 
 !!! info "Bidirectional State Space Model"
     Deep-H uses **Mamba-2**, a state-of-the-art selective state space model, for O(L) sequence processing. Bidirectional scanning captures both upstream and downstream regulatory context.
 
 !!! example "Dual-Head Architecture"
-    Simultaneously predicts **scalar intensity** (how strong is the signal?) and **spatial track** (where exactly are the peaks?) — giving researchers both the big picture and the fine details.
+    Simultaneously predicts **scalar intensity** (how strong is the signal?) and **spatial track** (where exactly are the peaks?) - giving researchers both the big picture and the fine details.
 
 ## Architecture at a Glance
 
