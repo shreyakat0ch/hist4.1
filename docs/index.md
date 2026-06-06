@@ -40,25 +40,21 @@ Deep-H is an advanced deep learning framework designed to predict **four key his
 
 <div class="feature-grid">
   <div class="feature-card coral">
-    <span class="feature-icon">🟥</span>
     <h3>H3K27ac</h3>
     <p><strong>Active enhancers & promoters.</strong> This acetylation mark opens chromatin, enabling transcription factor binding. Found at active regulatory elements across the genome.</p>
     <span class="chip chip-coral">Activating</span>
   </div>
   <div class="feature-card turquoise">
-    <span class="feature-icon">🟩</span>
     <h3>H3K4me3</h3>
     <p><strong>Active promoters.</strong> Trimethylation of H3K4 marks transcription start sites (TSS) of actively transcribed genes. Forms sharp, narrow peaks.</p>
     <span class="chip chip-turquoise">Activating</span>
   </div>
   <div class="feature-card lavender">
-    <span class="feature-icon">🟪</span>
     <h3>H3K27me3</h3>
     <p><strong>Polycomb repression.</strong> This repressive mark is deposited by PRC2 to silence developmental genes. Forms broad domains spanning tens of kilobases.</p>
     <span class="chip chip-lavender">Repressive</span>
   </div>
   <div class="feature-card golden">
-    <span class="feature-icon">🟧</span>
     <h3>H3K9me3</h3>
     <p><strong>Constitutive heterochromatin.</strong> Marks permanently silenced regions like centromeres and transposable elements. Prevents spurious transcription.</p>
     <span class="chip chip-golden">Repressive</span>
