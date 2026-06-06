@@ -4,30 +4,30 @@ hide:
   - toc
 ---
 
-# 🧬 Deep-H
+# 🤖 Deep-H
 
 <p class="hero-subtitle">
 A cell-type-aware deep learning framework that predicts histone modification landscapes from DNA sequence and RNA expression profiles.
 </p>
 
 <div class="hero-badges">
-  <span class="hero-badge badge-lavender">🧠 BiMamba-2 SSM</span>
-  <span class="hero-badge badge-coral">🔬 4 Histone Marks</span>
-  <span class="hero-badge badge-turquoise">🧪 440 Cell Lines</span>
-  <span class="hero-badge badge-golden">⚡ RNA-Conditioned</span>
-  <span class="hero-badge badge-sky">📊 Dual-Head Output</span>
+  <span class="hero-badge badge-lavender">BiMamba-2 SSM</span>
+  <span class="hero-badge badge-coral">4 Histone Marks</span>
+  <span class="hero-badge badge-turquoise">440 Cell Lines</span>
+  <span class="hero-badge badge-golden">RNA-Conditioned</span>
+  <span class="hero-badge badge-sky">Dual-Head Output</span>
 </div>
 
 <div class="diagram-container">
-  <img src="assets/images/hero_banner_new.png" alt="Deep-H — DNA to Neural Network" style="width: 100%; max-width: 600px; border-radius: 8px;" />
+  <img src="assets/images/hero_banner_new.png" alt="Deep-H - DNA to Neural Network" style="width: 100%; max-width: 600px; border-radius: 8px;" />
 </div>
 
 ## What is Deep-H?
 
 Deep-H is an advanced deep learning framework designed to predict **four key histone modifications** across the genome for any given cell type. By integrating a 32,768 bp DNA sequence window with a cell line's specific RNA-seq expression profile (focusing on the top 4,000 most variable genes), Deep-H accurately outputs:
 
-1. **Scalar predictions** — Estimating the peak intensity for each histone mark.
-2. **Spatial track predictions** — Generating a detailed binary map that pinpoints exactly *where* these peaks occur at a precise 64 bp resolution.
+1. **Scalar predictions** - Estimating the peak intensity for each histone mark.
+2. **Spatial track predictions** - Generating a detailed binary map that pinpoints exactly *where* these peaks occur at a precise 64 bp resolution.
 
 <div class="diagram-container">
   <img src="assets/images/Presentation3.png" alt="Deep-H Architecture" style="width: 100%; max-width: 800px; border-radius: 8px;" />
