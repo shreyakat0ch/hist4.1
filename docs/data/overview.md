@@ -1,6 +1,6 @@
 # Data Pipeline — Overview
 
-HERON's data pipeline transforms raw biological data into model-ready tensors. This page provides a high-level overview; subsequent pages dive into each stage.
+Deep-H's data pipeline transforms raw biological data into model-ready tensors. This page provides a high-level overview; subsequent pages dive into each stage.
 
 <div class="diagram-container">
   <img src="../assets/images/data_pipeline.png" alt="Data Construction and Feature Engineering Pipeline" />

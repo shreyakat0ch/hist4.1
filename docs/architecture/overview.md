@@ -1,10 +1,10 @@
 # Model Architecture — Overview
 
-HERON's architecture is a **multi-modal fusion network** that combines genomic DNA features with cell-type RNA expression to predict histone modifications. The model is defined in `model.py` as the `ChromaRegressor` class.
+Deep-H's architecture is a **multi-modal fusion network** that combines genomic DNA features with cell-type RNA expression to predict histone modifications. The model is defined in `model.py` as the `ChromaRegressor` class.
 
 <div class="diagram-container">
-  <img src="../assets/images/architecture.png" alt="HERON Architecture" />
-  <p class="diagram-caption"><strong>Figure:</strong> Complete HERON architecture showing dual-input processing, triple RNA injection, and dual-head output</p>
+  <img src="../assets/images/architecture.png" alt="Deep-H Architecture" />
+  <p class="diagram-caption"><strong>Figure:</strong> Complete Deep-H architecture showing dual-input processing, triple RNA injection, and dual-head output</p>
 </div>
 
 ## Architecture Summary
@@ -70,7 +70,7 @@ flowchart TB
 
 ## The Three RNA Injections
 
-HERON's key innovation is injecting cell-type identity at **three distinct levels**, each serving a different purpose:
+Deep-H's key innovation is injecting cell-type identity at **three distinct levels**, each serving a different purpose:
 
 <div class="feature-grid">
   <div class="feature-card coral">

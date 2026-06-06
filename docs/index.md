@@ -6,7 +6,7 @@ hide:
 
 <div class="hero-section">
 
-# 🧬 HERON
+# 🧬 Deep-H
 
 <p class="hero-subtitle">
 <strong>H</strong>istone <strong>E</strong>pigenomic <strong>R</strong>egressor <strong>O</strong>rchestrated by <strong>N</strong>eural-networks — A cell-type-aware deep learning framework that predicts histone modification landscapes from DNA sequence and RNA expression profiles.
@@ -23,20 +23,20 @@ hide:
 </div>
 
 <div class="diagram-container">
-  <img src="assets/images/hero_banner.png" alt="HERON — DNA to Neural Network" />
-  <p class="diagram-caption">HERON transforms raw DNA sequence and cell-type RNA expression into precise histone modification predictions</p>
+  <img src="assets/images/hero_banner.png" alt="Deep-H — DNA to Neural Network" />
+  <p class="diagram-caption">Deep-H transforms raw DNA sequence and cell-type RNA expression into precise histone modification predictions</p>
 </div>
 
-## What is HERON?
+## What is Deep-H?
 
-HERON is a deep learning model that predicts **four key histone modifications** at any genomic location for any cell type. Given a 32,768 bp DNA window and the cell line's RNA-seq expression profile (top 4,000 most variable genes), HERON outputs:
+Deep-H is a deep learning model that predicts **four key histone modifications** at any genomic location for any cell type. Given a 32,768 bp DNA window and the cell line's RNA-seq expression profile (top 4,000 most variable genes), Deep-H outputs:
 
 1. **Scalar predictions** — the peak intensity (log₂(signal + 1)) for each histone mark
 2. **Spatial track predictions** — a 512-bin binary map showing *where* peaks are located at 64 bp resolution
 
 <div class="diagram-container">
   <img src="assets/images/histone_concept.png" alt="Histone Modification Concept" />
-  <p class="diagram-caption">HERON predicts four histone marks that determine chromatin accessibility and transcription factor binding</p>
+  <p class="diagram-caption">Deep-H predicts four histone marks that determine chromatin accessibility and transcription factor binding</p>
 </div>
 
 ## Target Histone Marks
@@ -93,13 +93,13 @@ HERON is a deep learning model that predicts **four key histone modifications** 
   </div>
 </div>
 
-## Why HERON?
+## Why Deep-H?
 
 !!! tip "Cell-Type Awareness"
-    Unlike models that only see DNA, HERON conditions on **RNA expression** at three levels of the network — enabling it to predict histone marks for **any cell type**, not just the ones it was trained on.
+    Unlike models that only see DNA, Deep-H conditions on **RNA expression** at three levels of the network — enabling it to predict histone marks for **any cell type**, not just the ones it was trained on.
 
 !!! info "Bidirectional State Space Model"
-    HERON uses **Mamba-2**, a state-of-the-art selective state space model, for O(L) sequence processing. Bidirectional scanning captures both upstream and downstream regulatory context.
+    Deep-H uses **Mamba-2**, a state-of-the-art selective state space model, for O(L) sequence processing. Bidirectional scanning captures both upstream and downstream regulatory context.
 
 !!! example "Dual-Head Architecture"
     Simultaneously predicts **scalar intensity** (how strong is the signal?) and **spatial track** (where exactly are the peaks?) — giving researchers both the big picture and the fine details.

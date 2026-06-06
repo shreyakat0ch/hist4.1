@@ -1,8 +1,8 @@
 # Loss Functions
 
-HERON is a multi-task network predicting 4 histone marks simultaneously. Because some cell lines are missing data for certain marks, the loss functions must dynamically mask out invalid targets.
+Deep-H is a multi-task network predicting 4 histone marks simultaneously. Because some cell lines are missing data for certain marks, the loss functions must dynamically mask out invalid targets.
 
-HERON optimizes a **Hybrid Loss** that combines three distinct components.
+Deep-H optimizes a **Hybrid Loss** that combines three distinct components.
 
 ## 1. Masked Huber Loss (Scalar)
 
@@ -72,7 +72,7 @@ TRACK_LOSS_WEIGHT = 0.3   # Track loss is scaled down
 
 Not all histone marks are equally difficult to learn. Repressive marks (H3K27me3) span massive 30kb+ domains and have low signal-to-noise ratios compared to sharp H3K4me3 promoters.
 
-HERON applies a static multiplier to the loss for specific marks to focus network capacity:
+Deep-H applies a static multiplier to the loss for specific marks to focus network capacity:
 
 ```python
 # [H3K27ac, H3K4me3, H3K27me3, H3K9me3]

@@ -1,6 +1,6 @@
 # Installation
 
-This guide covers everything you need to set up HERON from scratch on a machine with a CUDA-capable GPU.
+This guide covers everything you need to set up Deep-H from scratch on a machine with a CUDA-capable GPU.
 
 ## System Requirements
 
@@ -64,11 +64,11 @@ python -c "import torch; print(f'PyTorch {torch.__version__}, CUDA: {torch.cuda.
 ```
 
 !!! warning "CUDA Verification"
-    If `torch.cuda.is_available()` returns `False`, your CUDA toolkit or GPU driver may need updating. HERON requires a working GPU for training.
+    If `torch.cuda.is_available()` returns `False`, your CUDA toolkit or GPU driver may need updating. Deep-H requires a working GPU for training.
 
 ## Step 3 — Install Mamba-2 (State Space Model)
 
-Mamba-2 is the core sequence model used in HERON's bidirectional encoder:
+Mamba-2 is the core sequence model used in Deep-H's bidirectional encoder:
 
 ```bash
 pip install mamba-ssm
@@ -95,7 +95,7 @@ pip install numpy pandas scikit-learn tqdm pyfaidx
 
 ## Step 5 — Prepare Reference Data
 
-HERON requires two external reference files:
+Deep-H requires two external reference files:
 
 ### 5a. Human Genome (hg38)
 
@@ -128,7 +128,7 @@ export HISTONE_DATA_DIR="/path/to/chip_seq_data"
 
 ## Step 6 — Prepare ChIP-seq Data
 
-HERON trains on ChIP-seq BED files from the ENCODE project. The data directory should be structured as:
+Deep-H trains on ChIP-seq BED files from the ENCODE project. The data directory should be structured as:
 
 ```
 data/
@@ -144,7 +144,7 @@ data/
 ```
 
 !!! info "Missing Marks Are Handled"
-    HERON uses a **mask-based loss** — cell lines that are missing certain histone marks are automatically excluded from those marks' loss computation. You do not need complete data for all 4 marks.
+    Deep-H uses a **mask-based loss** — cell lines that are missing certain histone marks are automatically excluded from those marks' loss computation. You do not need complete data for all 4 marks.
 
 ## Step 7 — Run Preprocessing
 

@@ -1,6 +1,6 @@
 # Inference & Evaluation
 
-Once HERON is trained, you can use the suite of inference scripts to evaluate its performance, predict marks on new sequences, and generate visualizations.
+Once Deep-H is trained, you can use the suite of inference scripts to evaluate its performance, predict marks on new sequences, and generate visualizations.
 
 ## `predict_eval.py` — Global Metrics
 
@@ -30,7 +30,7 @@ python run_diagnostics.py
 
 ## `predict_and_compare.py` — Virtual ChIP-seq
 
-Generates beautiful, high-resolution genome browser-style tracks comparing HERON's predictions to ground truth across large contiguous genomic regions.
+Generates beautiful, high-resolution genome browser-style tracks comparing Deep-H's predictions to ground truth across large contiguous genomic regions.
 
 ```bash
 python predict_and_compare.py
@@ -43,7 +43,7 @@ python predict_and_compare.py
 4. Highlights the spatial track head's binary predictions as colored bars.
 
 !!! example "Use Case"
-    This script is perfect for generating figures for papers or presentations. It visually demonstrates that HERON doesn't just get the math right — it accurately draws the epigenomic landscape.
+    This script is perfect for generating figures for papers or presentations. It visually demonstrates that Deep-H doesn't just get the math right — it accurately draws the epigenomic landscape.
 
 ## `rna_ablation_test.py` — Proving Cell-Type Awareness
 
@@ -60,4 +60,4 @@ Evaluates the trained model *twice* on the test set:
 
 If the model is genuinely using the RNA to distinguish cell types, the performance (Pearson/AUPRC) will plummet during the ablated run. If performance stays the same, the model is ignoring the RNA.
 
-*(Spoiler: HERON's performance drops by >30% without RNA, proving it successfully learned cell-type conditioning!)*
+*(Spoiler: Deep-H's performance drops by >30% without RNA, proving it successfully learned cell-type conditioning!)*

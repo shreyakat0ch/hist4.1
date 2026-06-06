@@ -1,10 +1,10 @@
 # Data Construction
 
-This page explains how HERON constructs its training dataset from raw biological data — covering the three data sources and the window sampling strategy that balances peak-rich and background regions.
+This page explains how Deep-H constructs its training dataset from raw biological data — covering the three data sources and the window sampling strategy that balances peak-rich and background regions.
 
 ## Raw Data Sources
 
-HERON requires three types of input data:
+Deep-H requires three types of input data:
 
 ### 🧬 1. Reference Genome (hg38)
 
@@ -19,7 +19,7 @@ hg38.fa — 3.1 billion base pairs
 ```
 
 !!! info "Genome Cache"
-    For speed, HERON pre-converts the FASTA into a **binary cache** (`genome_hg38.bin`) at first run. This enables O(1) random access to any genomic coordinate — critical for the DataLoader's 16 parallel workers.
+    For speed, Deep-H pre-converts the FASTA into a **binary cache** (`genome_hg38.bin`) at first run. This enables O(1) random access to any genomic coordinate — critical for the DataLoader's 16 parallel workers.
 
     ```python
     # genome_cache.py
@@ -78,13 +78,13 @@ chr1    180700   181200   .    3.8    .    ...
 </div>
 
 !!! warning "Not All Marks Available"
-    Some cell lines only have data for 1–3 of the 4 marks. HERON handles this gracefully with a **validity mask** — missing marks are excluded from loss computation during training.
+    Some cell lines only have data for 1–3 of the 4 marks. Deep-H handles this gracefully with a **validity mask** — missing marks are excluded from loss computation during training.
 
 ---
 
 ## Window Sampling Strategy
 
-The most critical design decision in HERON's data pipeline is **how we sample training windows**. Naive random sampling would produce >98% background (no peaks), making it impossible for the model to learn peak patterns.
+The most critical design decision in Deep-H's data pipeline is **how we sample training windows**. Naive random sampling would produce >98% background (no peaks), making it impossible for the model to learn peak patterns.
 
 ### The Class Imbalance Problem
 
@@ -96,9 +96,9 @@ pie title "Naive Random Sampling"
 
 Active marks like H3K27ac have tens of thousands of peaks per cell line, but repressive marks like H3K9me3 may have only **50–200 peaks** in some cell lines.
 
-### HERON's Balanced Sampling
+### Deep-H's Balanced Sampling
 
-HERON uses a **50/50 peak-to-background ratio** with intelligent oversampling:
+Deep-H uses a **50/50 peak-to-background ratio** with intelligent oversampling:
 
 ```python
 # config.py

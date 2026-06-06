@@ -73,7 +73,7 @@ MARK_CONTEXT_BP = {
 ## Ablation Testing
 
 ```python
-# Set to True to zero-out the RNA vector, effectively turning HERON 
+# Set to True to zero-out the RNA vector, effectively turning Deep-H 
 # into a DNA-only model. Used to prove the value of RNA conditioning.
 RNA_ABLATION = False
 ```

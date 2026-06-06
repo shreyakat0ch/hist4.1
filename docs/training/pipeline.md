@@ -1,15 +1,15 @@
 # Training Pipeline
 
-The HERON training pipeline is optimized for stability and performance on highly imbalanced multi-task epigenomic datasets.
+The Deep-H training pipeline is optimized for stability and performance on highly imbalanced multi-task epigenomic datasets.
 
 <div class="diagram-container">
-  <img src="../assets/images/training_pipeline.png" alt="HERON Training Pipeline" />
+  <img src="../assets/images/training_pipeline.png" alt="Deep-H Training Pipeline" />
   <p class="diagram-caption"><strong>Figure:</strong> The complete training lifecycle, from batching to loss computation and backpropagation</p>
 </div>
 
 ## Performance Optimizations
 
-HERON leverages several PyTorch features to maximize GPU utilization and training speed:
+Deep-H leverages several PyTorch features to maximize GPU utilization and training speed:
 
 <div class="feature-grid">
   <div class="feature-card coral">
@@ -71,13 +71,13 @@ The model that achieves the highest mean Pearson correlation across all 4 marks 
 !!! warning "DataLoader Zombie Threads"
     A known issue in PyTorch combined with complex C++ extensions (like `mamba-ssm`) can cause `LLVM ERROR: pthread_join failed` crashes at the end of epochs.
     
-    HERON implements a dual-strategy workaround:
+    Deep-H implements a dual-strategy workaround:
     1. `torch.multiprocessing.set_sharing_strategy('file_system')`
     2. The Validation DataLoader uses `num_workers=0` (runs in the main process) to prevent worker-process tearing during evaluation phases.
 
 ## Metrics Tracking
 
-During training, HERON tracks and logs an extensive suite of metrics to `runs/training_log.csv`:
+During training, Deep-H tracks and logs an extensive suite of metrics to `runs/training_log.csv`:
 
 **Scalar Head Metrics:**
 - Loss (Huber + Pearson)

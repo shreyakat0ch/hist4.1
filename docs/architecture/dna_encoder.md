@@ -12,7 +12,7 @@ Different histone marks are driven by features at different scales:
 | **Nucleosome** | 147–200 bp | Nucleosome positioning, phasing | H3K27ac (enhancer) |
 | **Domain** | 1–30 kb | TADs, LADs, chromatin compartments | H3K27me3, H3K9me3 |
 
-A single-resolution CNN would need extremely deep stacking to capture all scales. Instead, HERON uses **parallel branches** with different kernel sizes and strides.
+A single-resolution CNN would need extremely deep stacking to capture all scales. Instead, Deep-H uses **parallel branches** with different kernel sizes and strides.
 
 ## Architecture
 

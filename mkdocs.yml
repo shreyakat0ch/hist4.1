@@ -1,4 +1,4 @@
-site_name: "HERON — Histone Epigenomic Regressor"
+site_name: "Deep-H — Histone Epigenomic Regressor"
 site_description: "A cell-type-aware deep learning model for predicting histone modifications from DNA sequence and RNA expression"
 site_author: "Shreya"
 site_url: "https://shreyakat0ch.github.io/hist4.1/"

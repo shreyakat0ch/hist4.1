@@ -1,10 +1,10 @@
 # Feature Engineering
 
-Once windows are sampled, HERON extracts features and applies augmentations to create model-ready tensors. This page explains each feature type and the augmentation strategy.
+Once windows are sampled, Deep-H extracts features and applies augmentations to create model-ready tensors. This page explains each feature type and the augmentation strategy.
 
 ## Per-Window Features
 
-For each sampled window `(cell_line, chromosome, center)`, HERON extracts:
+For each sampled window `(cell_line, chromosome, center)`, Deep-H extracts:
 
 ### 🧬 DNA Input: One-Hot Encoding
 
@@ -24,7 +24,7 @@ _ONE_HOT_TABLE = np.eye(5, 4, dtype=np.float32)
 ```
 
 !!! tip "GPU-Optimized Encoding"
-    HERON stores DNA as **uint8 indices** and performs one-hot encoding lazily on the GPU via `F.one_hot()`. This reduces CPU→GPU transfer bandwidth by 4× compared to sending pre-encoded float tensors.
+    Deep-H stores DNA as **uint8 indices** and performs one-hot encoding lazily on the GPU via `F.one_hot()`. This reduces CPU→GPU transfer bandwidth by 4× compared to sending pre-encoded float tensors.
 
     ```python
     # In model.py forward():
@@ -93,7 +93,7 @@ mask = (raw_target != -1.0).astype(np.float32)  # [4]
 
 ## Data Augmentation
 
-HERON applies two augmentations to improve generalization:
+Deep-H applies two augmentations to improve generalization:
 
 ### 1. Random Offset (±2,000 bp)
 

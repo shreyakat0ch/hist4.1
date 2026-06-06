@@ -1,6 +1,6 @@
 # Prediction Heads — Dual Output Architecture
 
-After the BiMamba and Cross-Attention layers, the 512 DNA tokens (each representing 64 bp) contain rich, cell-type-aware contextual information. HERON forks this representation into two independent heads: a **Scalar Head** and a **Track Head**.
+After the BiMamba and Cross-Attention layers, the 512 DNA tokens (each representing 64 bp) contain rich, cell-type-aware contextual information. Deep-H forks this representation into two independent heads: a **Scalar Head** and a **Track Head**.
 
 ## 📍 1. Track Head (Spatial Localization)
 
@@ -28,7 +28,7 @@ track_logits = self.track_head(track_feat.transpose(1, 2))
 
 The Scalar Head predicts the overall intensity `log2(signal + 1)` of each mark within the window.
 
-Because different histone marks have vastly different spatial footprints (e.g., H3K4me3 is sharp, H3K27me3 is broad), HERON uses **Per-Mark Attention Pooling** rather than a generic global average pool.
+Because different histone marks have vastly different spatial footprints (e.g., H3K4me3 is sharp, H3K27me3 is broad), Deep-H uses **Per-Mark Attention Pooling** rather than a generic global average pool.
 
 ### Step A: Positional Encoding
 

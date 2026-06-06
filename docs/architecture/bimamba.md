@@ -1,10 +1,10 @@
 # BiMamba SSM — Cell-Conditioned Sequence Modeling
 
-The core sequence modeling engine of HERON is a stack of 4 **Bidirectional Mamba-2** (BiMamba) layers. Mamba-2 is a state-of-the-art selective state space model that processes sequences in linear time O(L) while maintaining a theoretically infinite receptive field.
+The core sequence modeling engine of Deep-H is a stack of 4 **Bidirectional Mamba-2** (BiMamba) layers. Mamba-2 is a state-of-the-art selective state space model that processes sequences in linear time O(L) while maintaining a theoretically infinite receptive field.
 
 ## Why Mamba instead of Transformers?
 
-DNA sequences are long (32,768 bp). Even after downsampling to 512 tokens via the CNN stem, self-attention scales quadratically, making it memory-intensive and slow. Mamba-2 scales **linearly**, allowing HERON to process long genomic contexts efficiently without sacrificing performance.
+DNA sequences are long (32,768 bp). Even after downsampling to 512 tokens via the CNN stem, self-attention scales quadratically, making it memory-intensive and slow. Mamba-2 scales **linearly**, allowing Deep-H to process long genomic contexts efficiently without sacrificing performance.
 
 ## Architecture
 
@@ -50,7 +50,7 @@ dna_cond = (1 + gamma) * dna_feat + beta
 
 ## 2. Bidirectional Scanning
 
-DNA is symmetric — a peak at position $X$ is influenced by sequence features both upstream and downstream. Mamba is inherently unidirectional, so HERON runs two Mamba blocks in parallel:
+DNA is symmetric — a peak at position $X$ is influenced by sequence features both upstream and downstream. Mamba is inherently unidirectional, so Deep-H runs two Mamba blocks in parallel:
 
 1. **Forward:** Scans $5' \rightarrow 3'$
 2. **Backward:** Sequence is flipped, scanned $5' \rightarrow 3'$, then output is flipped back.
@@ -72,7 +72,7 @@ dna_feat = dna_feat + fwd_out + bwd_out
 
 FiLM applies the *same* γ and β to every position in the 512-token sequence. But biological regulation is position-specific! 
 
-To solve this, after the 4 BiMamba layers, HERON uses a **Cross-Attention** module where DNA positions query RNA tokens:
+To solve this, after the 4 BiMamba layers, Deep-H uses a **Cross-Attention** module where DNA positions query RNA tokens:
 
 ```python
 # 1. Project RNA embedding to K "pseudo-tokens" (K=8)
