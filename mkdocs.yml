@@ -11,8 +11,8 @@ theme:
   custom_dir: docs/overrides
   palette:
     - scheme: default
-      primary: white
-      accent: deep purple
+      primary: brown
+      accent: brown
   font:
     text: Inter
     code: JetBrains Mono
