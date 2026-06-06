@@ -20,24 +20,12 @@ hide:
   <span class="hero-badge badge-sky">📊 Dual-Head Output</span>
 </div>
 
-</div>
-
-<div class="diagram-container">
-  <img src="assets/images/hero_banner.png" alt="Deep-H — DNA to Neural Network" />
-  <p class="diagram-caption">Deep-H transforms raw DNA sequence and cell-type RNA expression into precise histone modification predictions</p>
-</div>
-
 ## What is Deep-H?
 
 Deep-H is a deep learning model that predicts **four key histone modifications** at any genomic location for any cell type. Given a 32,768 bp DNA window and the cell line's RNA-seq expression profile (top 4,000 most variable genes), Deep-H outputs:
 
 1. **Scalar predictions** — the peak intensity (log₂(signal + 1)) for each histone mark
 2. **Spatial track predictions** — a 512-bin binary map showing *where* peaks are located at 64 bp resolution
-
-<div class="diagram-container">
-  <img src="assets/images/histone_concept.png" alt="Histone Modification Concept" />
-  <p class="diagram-caption">Deep-H predicts four histone marks that determine chromatin accessibility and transcription factor binding</p>
-</div>
 
 ## Target Histone Marks
 

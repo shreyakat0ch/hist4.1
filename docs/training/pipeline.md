@@ -2,10 +2,7 @@
 
 The Deep-H training pipeline is optimized for stability and performance on highly imbalanced multi-task epigenomic datasets.
 
-<div class="diagram-container">
-  <img src="../assets/images/training_pipeline.png" alt="Deep-H Training Pipeline" />
-  <p class="diagram-caption"><strong>Figure:</strong> The complete training lifecycle, from batching to loss computation and backpropagation</p>
-</div>
+
 
 ## Performance Optimizations
 

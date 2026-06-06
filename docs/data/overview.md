@@ -2,10 +2,7 @@
 
 Deep-H's data pipeline transforms raw biological data into model-ready tensors. This page provides a high-level overview; subsequent pages dive into each stage.
 
-<div class="diagram-container">
-  <img src="../assets/images/Presentation4.png" alt="Data Construction and Feature Engineering Pipeline" />
-  <p class="diagram-caption"><strong>Figure:</strong> Complete data construction and feature engineering pipeline — from raw data sources to model-ready batches</p>
-</div>
+![Data Construction and Feature Engineering Pipeline](../assets/images/Presentation4.png)
 
 ## Pipeline Stages
 

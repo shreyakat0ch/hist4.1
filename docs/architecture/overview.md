@@ -2,10 +2,7 @@
 
 Deep-H's architecture is a **multi-modal fusion network** that combines genomic DNA features with cell-type RNA expression to predict histone modifications. The model is defined in `model.py` as the `ChromaRegressor` class.
 
-<div class="diagram-container">
-  <img src="../assets/images/Presentation3.png" alt="Deep-H Architecture" />
-  <p class="diagram-caption"><strong>Figure:</strong> Complete Deep-H architecture showing dual-input processing, triple RNA injection, and dual-head output</p>
-</div>
+![Deep-H Architecture](../assets/images/Presentation3.png)
 
 ## Architecture Summary
 
