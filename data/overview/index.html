@@ -1093,10 +1093,10 @@
 <h2 id="pipeline-stages">Pipeline Stages<a class="headerlink" href="#pipeline-stages" title="Permanent link">&para;</a></h2>
 <p>The pipeline has <strong>five major stages</strong>, each designed to address specific challenges in epigenomic data:</p>
 <pre class="mermaid"><code>flowchart LR
-    A["📦 Raw Data&lt;br/&gt;Sources"] --&gt; B["🪟 Window&lt;br/&gt;Sampling"]
-    B --&gt; C["🔬 Feature&lt;br/&gt;Extraction"]
-    C --&gt; D["🔄 Data&lt;br/&gt;Augmentation"]
-    D --&gt; E["📊 Model-Ready&lt;br/&gt;Batch"]
+    A["Raw Data&lt;br/&gt;Sources"] --&gt; B["Window&lt;br/&gt;Sampling"]
+    B --&gt; C["Feature&lt;br/&gt;Extraction"]
+    C --&gt; D["Data&lt;br/&gt;Augmentation"]
+    D --&gt; E["Model-Ready&lt;br/&gt;Batch"]
 
     style A fill:#FFE0E0,stroke:#FF6B6B,color:#333
     style B fill:#D4F5F2,stroke:#4ECDC4,color:#333
@@ -1105,24 +1105,20 @@
     style E fill:#DBEAFE,stroke:#60A5FA,color:#333</code></pre>
 <div class="feature-grid">
   <div class="feature-card coral">
-    <span class="feature-icon">📦</span>
     <h3>1. Raw Data Sources</h3>
     <p>Three inputs: hg38 reference genome (FASTA), RNA-seq expression per cell line, and ChIP-seq BED files for 4 histone marks across 440 cell lines.</p>
   </div>
   <div class="feature-card turquoise">
-    <span class="feature-icon">🪟</span>
     <h3>2. Window Sampling</h3>
     <p>Balanced 50/50 peak/background sampling with smart oversampling for rare marks. 3000 peaks per mark per cell, backgrounds kept 20kb from any peak.</p>
   </div>
   <div class="feature-card lavender">
-    <span class="feature-icon">🔬</span>
     <h3>3. Feature Extraction</h3>
-    <p>DNA → one-hot [4, 32768]. RNA → top 4000 gene expression vector. Targets → scalar log₂(signal+1) + binary track at 64bp bins.</p>
+    <p>DNA → one-hot [4, 32768]. RNA → top 4000 gene expression vector. Targets → scalar log2(signal+1) + binary track at 64bp bins.</p>
   </div>
   <div class="feature-card golden">
-    <span class="feature-icon">🔄</span>
     <h3>4. Augmentation</h3>
-    <p>Random offset ±2000bp for translation invariance + 50% reverse complement flip. Both DNA and track targets are flipped together.</p>
+    <p>Random offset +/-2000bp for translation invariance + 50% reverse complement flip. Both DNA and track targets are flipped together.</p>
   </div>
 </div>
 

@@ -1321,22 +1321,18 @@
 <h2 id="system-requirements">System Requirements<a class="headerlink" href="#system-requirements" title="Permanent link">&para;</a></h2>
 <div class="feature-grid">
   <div class="feature-card coral">
-    <span class="feature-icon">🖥️</span>
     <h3>GPU</h3>
-    <p>NVIDIA GPU with <strong>≥24 GB VRAM</strong> (A100, A6000, or RTX 4090 recommended). Training uses mixed-precision (FP16) via PyTorch AMP.</p>
+    <p>NVIDIA GPU with <strong>>=24 GB VRAM</strong> (A100, A6000, or RTX 4090 recommended). Training uses mixed-precision (FP16) via PyTorch AMP.</p>
   </div>
   <div class="feature-card turquoise">
-    <span class="feature-icon">💾</span>
     <h3>RAM</h3>
-    <p><strong>≥64 GB</strong> system RAM recommended. The genome cache and 440 cell-line peak indexes consume significant memory.</p>
+    <p><strong>>=64 GB</strong> system RAM recommended. The genome cache and 440 cell-line peak indexes consume significant memory.</p>
   </div>
   <div class="feature-card lavender">
-    <span class="feature-icon">💿</span>
     <h3>Storage</h3>
-    <p><strong>≥100 GB</strong> free disk space for raw data (ChIP-seq BED files, FASTA genome, RNA-seq expression matrices).</p>
+    <p><strong>>=100 GB</strong> free disk space for raw data (ChIP-seq BED files, FASTA genome, RNA-seq expression matrices).</p>
   </div>
   <div class="feature-card golden">
-    <span class="feature-icon">🐍</span>
     <h3>Python</h3>
     <p><strong>Python 3.10+</strong> with CUDA 11.8 or 12.x. Conda/Mamba environment recommended for clean dependency management.</p>
   </div>
@@ -1381,7 +1377,7 @@
 </span></code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Compilation Time</p>
-<p><code>mamba-ssm</code> compiles CUDA kernels during installation. This may take <strong>5–10 minutes</strong> and requires a working <code>nvcc</code> (NVIDIA CUDA compiler). If compilation fails, ensure your CUDA toolkit matches your PyTorch CUDA version.</p>
+<p><code>mamba-ssm</code> compiles CUDA kernels during installation. This may take <strong>5-10 minutes</strong> and requires a working <code>nvcc</code> (NVIDIA CUDA compiler). If compilation fails, ensure your CUDA toolkit matches your PyTorch CUDA version.</p>
 </div>
 <h2 id="step-4-install-remaining-dependencies">Step 4 - Install Remaining Dependencies<a class="headerlink" href="#step-4-install-remaining-dependencies" title="Permanent link">&para;</a></h2>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>pip<span class="w"> </span>install<span class="w"> </span>numpy<span class="w"> </span>pandas<span class="w"> </span>scikit-learn<span class="w"> </span>tqdm<span class="w"> </span>pyfaidx
@@ -1397,37 +1393,37 @@
 <tbody>
 <tr>
 <td><code>torch</code></td>
-<td>≥2.0</td>
+<td>&gt;=2.0</td>
 <td>Deep learning framework</td>
 </tr>
 <tr>
 <td><code>mamba-ssm</code></td>
-<td>≥2.0</td>
+<td>&gt;=2.0</td>
 <td>Mamba-2 selective state space model</td>
 </tr>
 <tr>
 <td><code>numpy</code></td>
-<td>≥1.24</td>
+<td>&gt;=1.24</td>
 <td>Array operations</td>
 </tr>
 <tr>
 <td><code>pandas</code></td>
-<td>≥1.5</td>
+<td>&gt;=1.5</td>
 <td>Data manipulation</td>
 </tr>
 <tr>
 <td><code>scikit-learn</code></td>
-<td>≥1.2</td>
+<td>&gt;=1.2</td>
 <td>Evaluation metrics (AUPRC, MCC, F1)</td>
 </tr>
 <tr>
 <td><code>tqdm</code></td>
-<td>≥4.64</td>
+<td>&gt;=4.64</td>
 <td>Progress bars</td>
 </tr>
 <tr>
 <td><code>pyfaidx</code></td>
-<td>≥0.7</td>
+<td>&gt;=0.7</td>
 <td>Fast indexed FASTA access</td>
 </tr>
 </tbody>
@@ -1463,12 +1459,12 @@
 </span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>│   └── H3K9me3.bed
 </span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>├── cell_line_2/
 </span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>│   ├── H3K27ac.bed
-</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>│   └── H3K4me3.bed       ← not all marks required
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>│   └── H3K4me3.bed       &lt;- not all marks required
 </span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>└── ...                     (440 cell lines)
 </span></code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">Missing Marks Are Handled</p>
-<p>Deep-H uses a <strong>mask-based loss</strong> - cell lines that are missing certain histone marks are automatically excluded from those marks' loss computation. You do not need complete data for all 4 marks.</p>
+<p>Deep-H uses a <strong>mask-based loss</strong>. Cell lines that are missing certain histone marks are automatically excluded from those marks' loss computation. You do not need complete data for all 4 marks.</p>
 </div>
 <h2 id="step-7-run-preprocessing">Step 7 - Run Preprocessing<a class="headerlink" href="#step-7-run-preprocessing" title="Permanent link">&para;</a></h2>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Build the cell peak index and RNA maps</span>

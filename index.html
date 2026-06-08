@@ -1176,7 +1176,7 @@
   
 
 
-<h1 id="deep-h">🤖 Deep-H<a class="headerlink" href="#deep-h" title="Permanent link">&para;</a></h1>
+<h1 id="deep-h">Deep-H<a class="headerlink" href="#deep-h" title="Permanent link">&para;</a></h1>
 <p class="hero-subtitle">
 A cell-type-aware deep learning framework that predicts histone modification landscapes from DNA sequence and RNA expression profiles.
 </p>
@@ -1190,7 +1190,7 @@ A cell-type-aware deep learning framework that predicts histone modification lan
 </div>
 
 <div class="diagram-container">
-  <img src="assets/images/hero_banner_new.png" alt="Deep-H - DNA to Neural Network" style="width: 100%; max-width: 600px; border-radius: 8px;" />
+  <img src="assets/images/Presentation13.png" alt="Deep-H - DNA to Neural Network" style="width: 100%; max-width: 600px; border-radius: 8px;" />
 </div>
 
 <h2 id="what-is-deep-h">What is Deep-H?<a class="headerlink" href="#what-is-deep-h" title="Permanent link">&para;</a></h2>
@@ -1206,6 +1206,7 @@ A cell-type-aware deep learning framework that predicts histone modification lan
 <div class="diagram-container">
   <img src="assets/images/Presentation4.png" alt="Deep-H Data Pipeline" style="width: 100%; max-width: 800px; border-radius: 8px;" />
 </div>
+
 <h2 id="target-histone-marks">Target Histone Marks<a class="headerlink" href="#target-histone-marks" title="Permanent link">&para;</a></h2>
 <div class="feature-grid">
   <div class="feature-card coral">
@@ -1257,7 +1258,7 @@ A cell-type-aware deep learning framework that predicts histone modification lan
 <h2 id="why-deep-h">Why Deep-H?<a class="headerlink" href="#why-deep-h" title="Permanent link">&para;</a></h2>
 <div class="admonition tip">
 <p class="admonition-title">Cell-Type Awareness</p>
-<p>Unlike models that only see DNA, Deep-H conditions on <strong>RNA expression</strong> at three levels of the network - enabling it to predict histone marks for <strong>any cell type</strong>, not just the ones it was trained on.</p>
+<p>Unlike models that only see DNA, Deep-H conditions on <strong>RNA expression</strong> at three levels of the network, enabling it to predict histone marks for <strong>any cell type</strong>, not just the ones it was trained on.</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">Bidirectional State Space Model</p>
@@ -1265,18 +1266,18 @@ A cell-type-aware deep learning framework that predicts histone modification lan
 </div>
 <div class="admonition example">
 <p class="admonition-title">Dual-Head Architecture</p>
-<p>Simultaneously predicts <strong>scalar intensity</strong> (how strong is the signal?) and <strong>spatial track</strong> (where exactly are the peaks?) - giving researchers both the big picture and the fine details.</p>
+<p>Simultaneously predicts <strong>scalar intensity</strong> (how strong is the signal?) and <strong>spatial track</strong> (where exactly are the peaks?), giving researchers both the big picture and the fine details.</p>
 </div>
 <h2 id="architecture-at-a-glance">Architecture at a Glance<a class="headerlink" href="#architecture-at-a-glance" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>flowchart LR
-    A["🧬 DNA&lt;br/&gt;32,768 bp"] --&gt; B["Multi-Resolution&lt;br/&gt;CNN Stem"]
-    B --&gt; C["Cell-Conditioned&lt;br/&gt;BiMamba-2 (×4)"]
-    D["📊 RNA&lt;br/&gt;4,000 genes"] --&gt; E["RNA MLP&lt;br/&gt;Encoder"]
+    A["DNA&lt;br/&gt;32,768 bp"] --&gt; B["Multi-Resolution&lt;br/&gt;CNN Stem"]
+    B --&gt; C["Cell-Conditioned&lt;br/&gt;BiMamba-2 (x4)"]
+    D["RNA&lt;br/&gt;4,000 genes"] --&gt; E["RNA MLP&lt;br/&gt;Encoder"]
     E --&gt;|"FiLM γ,β"| C
     C --&gt; F["Cross-Attention"]
     E --&gt;|"RNA Tokens"| F
-    F --&gt; G["🎯 Scalar Head&lt;br/&gt;Peak Intensity"]
-    F --&gt; H["📍 Track Head&lt;br/&gt;Peak Location"]
+    F --&gt; G["Scalar Head&lt;br/&gt;Peak Intensity"]
+    F --&gt; H["Track Head&lt;br/&gt;Peak Location"]
 
     style A fill:#FFE0E0,stroke:#FF6B6B,color:#333
     style D fill:#D4F5F2,stroke:#4ECDC4,color:#333
@@ -1299,7 +1300,7 @@ A cell-type-aware deep learning framework that predicts histone modification lan
 </span></code></pre></div>
 <hr />
 <div style="text-align: center; padding: 32px 0; color: #94A3B8;">
-  <p>Built with 💜 using PyTorch, Mamba-2, and MkDocs Material</p>
+  <p>Built with PyTorch, Mamba-2, and MkDocs Material</p>
 </div>
 
 

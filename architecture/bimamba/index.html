@@ -1163,7 +1163,7 @@
     RNA["RNA Embedding&lt;br/&gt;[B, 512]"] --&gt;|"Linear"| F1["FiLM γ, β&lt;br/&gt;Layer 1"]
 
     subgraph L1 ["Layer 1"]
-        F1 --&gt; COND1["DNA_cond = DNA × (1+γ) + β"]
+        F1 --&gt; COND1["DNA_cond = DNA x (1+γ) + β"]
         COND1 --&gt; FWD1["Forward Mamba-2"]
         COND1 --&gt; REV["Reverse Sequence"] --&gt; BWD1["Backward Mamba-2"] --&gt; REV2["Reverse Output"]
         FWD1 &amp; REV2 --&gt; ADD1["Add to DNA Features"]
@@ -1181,58 +1181,33 @@
     style OUT fill:#FFE0E0,stroke:#FF6B6B,color:#333</code></pre>
 <h2 id="1-per-layer-film-conditioning">1. Per-Layer FiLM Conditioning<a class="headerlink" href="#1-per-layer-film-conditioning" title="Permanent link">&para;</a></h2>
 <p>Before each Mamba layer, the DNA features are modulated by the cell-type RNA embedding using Feature-wise Linear Modulation (FiLM):</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Each Mamba layer gets its own γ, β</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">gamma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">film_gammas</span><span class="p">[</span><span class="n">layer_idx</span><span class="p">](</span><span class="n">rna_emb</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># [B, 1, 256]</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">beta</span>  <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">film_betas</span><span class="p">[</span><span class="n">layer_idx</span><span class="p">](</span><span class="n">rna_emb</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>   <span class="c1"># [B, 1, 256]</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># Apply affine transformation</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">dna_cond</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">gamma</span><span class="p">)</span> <span class="o">*</span> <span class="n">dna_feat</span> <span class="o">+</span> <span class="n">beta</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">gamma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">film_gammas</span><span class="p">[</span><span class="n">layer_idx</span><span class="p">](</span><span class="n">rna_emb</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">beta</span>  <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">film_betas</span><span class="p">[</span><span class="n">layer_idx</span><span class="p">](</span><span class="n">rna_emb</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">dna_cond</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">gamma</span><span class="p">)</span> <span class="o">*</span> <span class="n">dna_feat</span> <span class="o">+</span> <span class="n">beta</span>
 </span></code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Why Per-Layer?</p>
 <p>Applying FiLM at every layer allows the network to learn <strong>hierarchical cell-type features</strong>. Layer 1 might learn coarse cell-type patterns (e.g., "is this a stem cell?"), while Layer 4 learns fine-grained, context-specific effects.</p>
 </div>
 <h2 id="2-bidirectional-scanning">2. Bidirectional Scanning<a class="headerlink" href="#2-bidirectional-scanning" title="Permanent link">&para;</a></h2>
-<p>DNA is symmetric - a peak at position <span class="arithmatex">\(X\)</span> is influenced by sequence features both upstream and downstream. Mamba is inherently unidirectional, so Deep-H runs two Mamba blocks in parallel:</p>
+<p>DNA is symmetric: a peak at position <span class="arithmatex">\(X\)</span> is influenced by sequence features both upstream and downstream. Mamba is inherently unidirectional, so Deep-H runs two Mamba blocks in parallel:</p>
 <ol>
 <li><strong>Forward:</strong> Scans <span class="arithmatex">\(5' \rightarrow 3'\)</span></li>
 <li><strong>Backward:</strong> Sequence is flipped, scanned <span class="arithmatex">\(5' \rightarrow 3'\)</span>, then output is flipped back.</li>
 </ol>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Forward pass with gradient checkpointing for memory efficiency</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">fwd_out</span> <span class="o">=</span> <span class="n">checkpoint</span><span class="p">(</span><span class="n">fwd_layer</span><span class="p">,</span> <span class="n">dna_cond</span><span class="p">,</span> <span class="n">use_reentrant</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># Backward pass (flip -&gt; mamba -&gt; flip)</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">bwd_out</span> <span class="o">=</span> <span class="n">checkpoint</span><span class="p">(</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="n">bwd_layer</span><span class="p">,</span> <span class="n">dna_cond</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">use_reentrant</span><span class="o">=</span><span class="kc">False</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="p">)</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="c1"># Residual connection</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="n">dna_feat</span> <span class="o">=</span> <span class="n">dna_feat</span> <span class="o">+</span> <span class="n">fwd_out</span> <span class="o">+</span> <span class="n">bwd_out</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">fwd_out</span> <span class="o">=</span> <span class="n">checkpoint</span><span class="p">(</span><span class="n">fwd_layer</span><span class="p">,</span> <span class="n">dna_cond</span><span class="p">,</span> <span class="n">use_reentrant</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">bwd_out</span> <span class="o">=</span> <span class="n">checkpoint</span><span class="p">(</span><span class="n">bwd_layer</span><span class="p">,</span> <span class="n">dna_cond</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">use_reentrant</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">dna_feat</span> <span class="o">=</span> <span class="n">dna_feat</span> <span class="o">+</span> <span class="n">fwd_out</span> <span class="o">+</span> <span class="n">bwd_out</span>
 </span></code></pre></div>
 <h2 id="3-position-specific-cross-attention">3. Position-Specific Cross-Attention<a class="headerlink" href="#3-position-specific-cross-attention" title="Permanent link">&para;</a></h2>
-<p>FiLM applies the <em>same</em> γ and β to every position in the 512-token sequence. But biological regulation is position-specific! </p>
-<p>To solve this, after the 4 BiMamba layers, Deep-H uses a <strong>Cross-Attention</strong> module where DNA positions query RNA tokens:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 1. Project RNA embedding to K &quot;pseudo-tokens&quot; (K=8)</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">rna_tokens</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rna_to_tokens</span><span class="p">(</span><span class="n">rna_emb</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="n">B</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_rna_tokens</span><span class="p">,</span> <span class="mi">256</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="p">)</span>  <span class="c1"># [B, 8, 256]</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c1"># 2. DNA queries RNA tokens</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="n">cross_out</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cross_attn</span><span class="p">(</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="n">query</span><span class="o">=</span><span class="n">dna_feat</span><span class="p">,</span>      <span class="c1"># [B, 512, 256]</span>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="n">key</span><span class="o">=</span><span class="n">rna_tokens</span><span class="p">,</span>      <span class="c1"># [B, 8, 256]</span>
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    <span class="n">value</span><span class="o">=</span><span class="n">rna_tokens</span>     <span class="c1"># [B, 8, 256]</span>
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="p">)</span>
-</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
-</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="n">dna_feat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cross_attn_norm</span><span class="p">(</span><span class="n">dna_feat</span> <span class="o">+</span> <span class="n">cross_out</span><span class="p">)</span>
+<p>After the 4 BiMamba layers, Deep-H uses a <strong>Cross-Attention</strong> module where DNA positions query RNA tokens:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">rna_tokens</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rna_to_tokens</span><span class="p">(</span><span class="n">rna_emb</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_rna_tokens</span><span class="p">,</span> <span class="mi">256</span><span class="p">)</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">cross_out</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cross_attn</span><span class="p">(</span><span class="n">query</span><span class="o">=</span><span class="n">dna_feat</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">rna_tokens</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">rna_tokens</span><span class="p">)</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">dna_feat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cross_attn_norm</span><span class="p">(</span><span class="n">dna_feat</span> <span class="o">+</span> <span class="n">cross_out</span><span class="p">)</span>
 </span></code></pre></div>
 <div class="admonition example">
 <p class="admonition-title">Biological Intuition</p>
-<ul>
-<li>Token at pos 100 (contains a CpG island) attends heavily to RNA Token #1 (developmental genes).</li>
-<li>Token at pos 400 (contains a repeat element) attends heavily to RNA Token #4 (heterochromatin genes).</li>
-</ul>
-<p>This provides <strong>genuine position × cell-type interaction</strong>.</p>
+<p>Token at pos 100 (CpG island) attends to developmental genes. Token at pos 400 (repeat element) attends to heterochromatin genes. This provides <strong>genuine position x cell-type interaction</strong>.</p>
 </div>
 <hr />
 <p><strong>Next:</strong> <a href="../heads/">Prediction Heads →</a></p>

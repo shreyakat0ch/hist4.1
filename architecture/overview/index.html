@@ -1137,35 +1137,35 @@
 <h2 id="architecture-summary">Architecture Summary<a class="headerlink" href="#architecture-summary" title="Permanent link">&para;</a></h2>
 <p>The model processes two inputs through specialized encoders and fuses them at multiple stages:</p>
 <pre class="mermaid"><code>flowchart TB
-    subgraph inputs ["📥 Inputs"]
-        DNA["🧬 DNA Sequence&lt;br/&gt;[B, 4, 32768]"]
-        RNA["📊 RNA Expression&lt;br/&gt;[B, 4000]"]
+    subgraph inputs ["Inputs"]
+        DNA["DNA Sequence&lt;br/&gt;[B, 4, 32768]"]
+        RNA["RNA Expression&lt;br/&gt;[B, 4000]"]
     end
 
-    subgraph dna_enc ["🔵 DNA Encoder"]
+    subgraph dna_enc ["DNA Encoder"]
         CNN_A["Branch A: Motif&lt;br/&gt;(k=15)"]
         CNN_B["Branch B: Nucleosome&lt;br/&gt;(k=15, s=8)"]
         CNN_C["Branch C: Domain&lt;br/&gt;(k=31)"]
         MERGE["Merge → [B, 256, 512]"]
     end
 
-    subgraph rna_enc ["🟢 RNA Encoder"]
+    subgraph rna_enc ["RNA Encoder"]
         MLP["MLP: 4000→1024→512→512"]
     end
 
-    subgraph ssm ["🟣 Cell-Conditioned BiMamba"]
+    subgraph ssm ["Cell-Conditioned BiMamba"]
         FILM["FiLM γ,β&lt;br/&gt;(RNA Injection #1)"]
         FWD["Forward Mamba-2"]
         BWD["Backward Mamba-2"]
     end
 
-    subgraph xattn ["🟡 Cross-Attention"]
-        CA["DNA queries × RNA tokens&lt;br/&gt;(RNA Injection #2)"]
+    subgraph xattn ["Cross-Attention"]
+        CA["DNA queries x RNA tokens&lt;br/&gt;(RNA Injection #2)"]
     end
 
-    subgraph outputs ["📤 Outputs"]
-        TRACK["📍 Track Head&lt;br/&gt;[B, 4, 512]"]
-        SCALAR["🎯 Scalar Head&lt;br/&gt;[B, 4]"]
+    subgraph outputs ["Outputs"]
+        TRACK["Track Head&lt;br/&gt;[B, 4, 512]"]
+        SCALAR["Scalar Head&lt;br/&gt;[B, 4]"]
     end
 
     DNA --&gt; CNN_A &amp; CNN_B &amp; CNN_C
@@ -1194,23 +1194,23 @@
 <p>Deep-H's key innovation is injecting cell-type identity at <strong>three distinct levels</strong>, each serving a different purpose:</p>
 <div class="feature-grid">
   <div class="feature-card coral">
-    <span class="feature-icon">①</span>
+    <span class="feature-icon">1</span>
     <h3>Per-Layer FiLM Conditioning</h3>
     <p><strong>Where:</strong> Before each of the 4 BiMamba layers.<br/>
     <strong>How:</strong> RNA → γ, β → affine transform on DNA features.<br/>
-    <strong>Why:</strong> Applies the <em>same</em> cell-type modulation to every DNA position - teaches the model coarse cell-type-specific patterns.</p>
+    <strong>Why:</strong> Applies the <em>same</em> cell-type modulation to every DNA position, teaches the model coarse cell-type-specific patterns.</p>
     <span class="chip chip-coral">Global modulation</span>
   </div>
   <div class="feature-card turquoise">
-    <span class="feature-icon">②</span>
+    <span class="feature-icon">2</span>
     <h3>Cross-Attention</h3>
     <p><strong>Where:</strong> After all BiMamba layers.<br/>
     <strong>How:</strong> Each DNA position <em>independently queries</em> 8 RNA pseudo-tokens.<br/>
-    <strong>Why:</strong> A CpG island position can attend to developmental genes; a repeat position to heterochromatin genes. Genuine position × cell-type interaction.</p>
+    <strong>Why:</strong> A CpG island position can attend to developmental genes; a repeat position to heterochromatin genes. Genuine position x cell-type interaction.</p>
     <span class="chip chip-turquoise">Position-specific</span>
   </div>
   <div class="feature-card lavender">
-    <span class="feature-icon">③</span>
+    <span class="feature-icon">3</span>
     <h3>Head Concatenation</h3>
     <p><strong>Where:</strong> At each regression head.<br/>
     <strong>How:</strong> RNA embedding concatenated with pooled DNA features → MLP.<br/>
@@ -1243,13 +1243,13 @@
 <td>Cell-type identity compression</td>
 </tr>
 <tr>
-<td>FiLM Layers (×4)</td>
+<td>FiLM Layers (x4)</td>
 <td>~0.5M</td>
 <td>[512] → γ, β per layer</td>
 <td>Global cell conditioning</td>
 </tr>
 <tr>
-<td>BiMamba-2 (×4)</td>
+<td>BiMamba-2 (x4)</td>
 <td>~5.4M</td>
 <td>[512, 256] → [512, 256]</td>
 <td>Bidirectional sequence modeling</td>
@@ -1257,11 +1257,11 @@
 <tr>
 <td>Cross-Attention</td>
 <td>~0.8M</td>
-<td>DNA × RNA → [512, 256]</td>
+<td>DNA x RNA → [512, 256]</td>
 <td>Position-specific conditioning</td>
 </tr>
 <tr>
-<td>Scalar Heads (×4)</td>
+<td>Scalar Heads (x4)</td>
 <td>~1.1M</td>
 <td>[512] → [4]</td>
 <td>Per-mark intensity prediction</td>

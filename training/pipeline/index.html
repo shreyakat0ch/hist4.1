@@ -1237,22 +1237,18 @@
 <p>Deep-H leverages several PyTorch features to maximize GPU utilization and training speed:</p>
 <div class="feature-grid">
   <div class="feature-card coral">
-    <span class="feature-icon">⚡</span>
     <h3>Automatic Mixed Precision (AMP)</h3>
     <p>Forward passes run in `float16` to halve memory usage and double throughput on Tensor Cores, while gradients are scaled to prevent underflow.</p>
   </div>
   <div class="feature-card turquoise">
-    <span class="feature-icon">🚀</span>
     <h3>Gradient Checkpointing</h3>
     <p>Mamba layers use PyTorch's `checkpoint()` to trade minor compute overhead for massive memory savings, allowing longer sequences.</p>
   </div>
   <div class="feature-card lavender">
-    <span class="feature-icon">📦</span>
     <h3>Gradient Accumulation</h3>
     <p>Physical batch size is 256 (memory limit), but gradients are accumulated over 4 steps for an <strong>effective batch size of 1024</strong>, stabilizing the multi-task loss.</p>
   </div>
   <div class="feature-card golden">
-    <span class="feature-icon">🔄</span>
     <h3>Persistent Workers</h3>
     <p>The DataLoader uses 16 workers with `persistent_workers=True` and `file_system` sharing strategy to eliminate epoch-to-epoch startup latency.</p>
   </div>
@@ -1261,7 +1257,7 @@
 <h2 id="learning-rate-schedule">Learning Rate Schedule<a class="headerlink" href="#learning-rate-schedule" title="Permanent link">&para;</a></h2>
 <p>The optimizer uses a <strong>Warmup-Cosine</strong> schedule (<code>SequentialLR</code>):</p>
 <ol>
-<li><strong>Warmup Phase:</strong> Linearly increases from <span class="arithmatex">\(1\times 10^{-6}\)</span> to <span class="arithmatex">\(3\times 10^{-4}\)</span> over the first 3,000 steps. This prevents early divergence when the network is randomly initialized.</li>
+<li><strong>Warmup Phase:</strong> Linearly increases from 1e-6 to 3e-4 over the first 3,000 steps. This prevents early divergence when the network is randomly initialized.</li>
 <li><strong>Cosine Decay Phase:</strong> Gradually decays the learning rate following a cosine curve for the remainder of the 50 epochs, allowing fine-grained convergence at the end of training.</li>
 </ol>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">AdamW</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">3e-4</span><span class="p">,</span> <span class="n">weight_decay</span><span class="o">=</span><span class="mf">5e-2</span><span class="p">)</span>

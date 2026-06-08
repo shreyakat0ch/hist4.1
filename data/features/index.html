@@ -621,10 +621,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#dna-input-one-hot-encoding" class="md-nav__link">
+  <a href="#1-dna-input-one-hot-encoding" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🧬 DNA Input: One-Hot Encoding
+        1. DNA Input: One-Hot Encoding
       
     </span>
   </a>
@@ -632,10 +632,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#rna-input-expression-vector" class="md-nav__link">
+  <a href="#2-rna-input-expression-vector" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📊 RNA Input: Expression Vector
+        2. RNA Input: Expression Vector
       
     </span>
   </a>
@@ -643,10 +643,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#scalar-target-peak-intensity" class="md-nav__link">
+  <a href="#3-scalar-target-peak-intensity" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🎯 Scalar Target: Peak Intensity
+        3. Scalar Target: Peak Intensity
       
     </span>
   </a>
@@ -654,10 +654,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#track-target-binary-peak-map" class="md-nav__link">
+  <a href="#4-track-target-binary-peak-map" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📍 Track Target: Binary Peak Map
+        4. Track Target: Binary Peak Map
       
     </span>
   </a>
@@ -665,10 +665,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#validity-mask" class="md-nav__link">
+  <a href="#5-validity-mask" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🎭 Validity Mask
+        5. Validity Mask
       
     </span>
   </a>
@@ -696,7 +696,7 @@
   <a href="#1-random-offset-2000-bp" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Random Offset (±2,000 bp)
+        1. Random Offset (+/- 2,000 bp)
       
     </span>
   </a>
@@ -1158,10 +1158,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#dna-input-one-hot-encoding" class="md-nav__link">
+  <a href="#1-dna-input-one-hot-encoding" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🧬 DNA Input: One-Hot Encoding
+        1. DNA Input: One-Hot Encoding
       
     </span>
   </a>
@@ -1169,10 +1169,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#rna-input-expression-vector" class="md-nav__link">
+  <a href="#2-rna-input-expression-vector" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📊 RNA Input: Expression Vector
+        2. RNA Input: Expression Vector
       
     </span>
   </a>
@@ -1180,10 +1180,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#scalar-target-peak-intensity" class="md-nav__link">
+  <a href="#3-scalar-target-peak-intensity" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🎯 Scalar Target: Peak Intensity
+        3. Scalar Target: Peak Intensity
       
     </span>
   </a>
@@ -1191,10 +1191,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#track-target-binary-peak-map" class="md-nav__link">
+  <a href="#4-track-target-binary-peak-map" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📍 Track Target: Binary Peak Map
+        4. Track Target: Binary Peak Map
       
     </span>
   </a>
@@ -1202,10 +1202,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#validity-mask" class="md-nav__link">
+  <a href="#5-validity-mask" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🎭 Validity Mask
+        5. Validity Mask
       
     </span>
   </a>
@@ -1233,7 +1233,7 @@
   <a href="#1-random-offset-2000-bp" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Random Offset (±2,000 bp)
+        1. Random Offset (+/- 2,000 bp)
       
     </span>
   </a>
@@ -1291,7 +1291,7 @@
 <p>Once windows are sampled, Deep-H extracts features and applies augmentations to create model-ready tensors. This page explains each feature type and the augmentation strategy.</p>
 <h2 id="per-window-features">Per-Window Features<a class="headerlink" href="#per-window-features" title="Permanent link">&para;</a></h2>
 <p>For each sampled window <code>(cell_line, chromosome, center)</code>, Deep-H extracts:</p>
-<h3 id="dna-input-one-hot-encoding">🧬 DNA Input: One-Hot Encoding<a class="headerlink" href="#dna-input-one-hot-encoding" title="Permanent link">&para;</a></h3>
+<h3 id="1-dna-input-one-hot-encoding">1. DNA Input: One-Hot Encoding<a class="headerlink" href="#1-dna-input-one-hot-encoding" title="Permanent link">&para;</a></h3>
 <p>The 32,768 bp DNA sequence is converted into a <code>[4, 32768]</code> one-hot tensor:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Nucleotide encoding: A=0, C=1, G=2, T=3, N=4</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># One-hot: row 4 (N) maps to all-zeros</span>
@@ -1302,18 +1302,18 @@
 </span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1">#          [0, 1, 0, 0]</span>
 </span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="c1">#          [0, 0, 1, 0]</span>
 </span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="c1">#          [0, 0, 0, 1]</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1">#          [0, 0, 0, 0]  ← N (unknown) = zero vector</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1">#          [0, 0, 0, 0]  &lt;- N (unknown) = zero vector</span>
 </span></code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">GPU-Optimized Encoding</p>
-<p>Deep-H stores DNA as <strong>uint8 indices</strong> and performs one-hot encoding lazily on the GPU via <code>F.one_hot()</code>. This reduces CPU→GPU transfer bandwidth by 4× compared to sending pre-encoded float tensors.</p>
+<p>Deep-H stores DNA as <strong>uint8 indices</strong> and performs one-hot encoding lazily on the GPU via <code>F.one_hot()</code>. This reduces CPU-&gt;GPU transfer bandwidth by 4x compared to sending pre-encoded float tensors.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># In model.py forward():</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">if</span> <span class="n">dna_seq</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="n">torch</span><span class="o">.</span><span class="n">uint8</span> <span class="ow">or</span> <span class="n">dna_seq</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">:</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="n">dna_seq</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">one_hot</span><span class="p">(</span><span class="n">dna_seq</span><span class="o">.</span><span class="n">long</span><span class="p">(),</span> <span class="n">num_classes</span><span class="o">=</span><span class="mi">5</span>
 </span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>             <span class="p">)[:,</span> <span class="p">:,</span> <span class="p">:</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">permute</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
 </span></code></pre></div>
 </div>
-<h3 id="rna-input-expression-vector">📊 RNA Input: Expression Vector<a class="headerlink" href="#rna-input-expression-vector" title="Permanent link">&para;</a></h3>
+<h3 id="2-rna-input-expression-vector">2. RNA Input: Expression Vector<a class="headerlink" href="#2-rna-input-expression-vector" title="Permanent link">&para;</a></h3>
 <p>The cell line's RNA fingerprint is a pre-computed <code>[4000]</code> float vector:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">rna</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rna_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dummy_rna</span><span class="p">)</span>  <span class="c1"># [4000]</span>
 </span></code></pre></div>
@@ -1331,7 +1331,7 @@
 </tr>
 <tr>
 <td>Scale</td>
-<td>log₂(TPM + 1)</td>
+<td>log2(TPM + 1)</td>
 </tr>
 <tr>
 <td>Missing cells</td>
@@ -1343,17 +1343,17 @@
 </tr>
 </tbody>
 </table>
-<h3 id="scalar-target-peak-intensity">🎯 Scalar Target: Peak Intensity<a class="headerlink" href="#scalar-target-peak-intensity" title="Permanent link">&para;</a></h3>
-<p>For each of the 4 histone marks, the target is the <strong>log₂(signal + 1)</strong> value at the window center:</p>
+<h3 id="3-scalar-target-peak-intensity">3. Scalar Target: Peak Intensity<a class="headerlink" href="#3-scalar-target-peak-intensity" title="Permanent link">&para;</a></h3>
+<p>For each of the 4 histone marks, the target is the <strong>log2(signal + 1)</strong> value at the window center:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">raw_target</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cell_index</span><span class="p">[</span><span class="n">cell</span><span class="p">]</span><span class="o">.</span><span class="n">lookup_signal</span><span class="p">(</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="n">chrom</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">start</span> <span class="o">+</span> <span class="n">config</span><span class="o">.</span><span class="n">WINDOW_SIZE</span>
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="p">)</span>  <span class="c1"># [4] - one value per mark</span>
 </span></code></pre></div>
 <div class="admonition note">
-<p class="admonition-title">Why log₂(signal + 1)?</p>
+<p class="admonition-title">Why log2(signal + 1)?</p>
 <p>ChIP-seq signal values span 4+ orders of magnitude. Log-transformation compresses this range and makes Huber loss equally sensitive to fold-changes at all intensity levels. The <code>+1</code> prevents log(0).</p>
 </div>
-<h3 id="track-target-binary-peak-map">📍 Track Target: Binary Peak Map<a class="headerlink" href="#track-target-binary-peak-map" title="Permanent link">&para;</a></h3>
+<h3 id="4-track-target-binary-peak-map">4. Track Target: Binary Peak Map<a class="headerlink" href="#4-track-target-binary-peak-map" title="Permanent link">&para;</a></h3>
 <p>A <code>[4, 512]</code> binary tensor indicating which of the 512 spatial bins (64 bp each) overlap a peak:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">track_target</span><span class="p">,</span> <span class="n">track_valid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cell_index</span><span class="p">[</span><span class="n">cell</span><span class="p">]</span><span class="o">.</span><span class="n">lookup_track</span><span class="p">(</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="n">chrom</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">start</span> <span class="o">+</span> <span class="n">config</span><span class="o">.</span><span class="n">WINDOW_SIZE</span><span class="p">,</span>
@@ -1364,9 +1364,9 @@
 </span></code></pre></div>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Window: |-------- 32,768 bp --------|
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Bins:   |1|2|3|4|...............512|   (64 bp each)
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Track:  |0|0|1|1|1|1|0|0|0|1|1|0|...|  ← 1 = peak present
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Track:  |0|0|1|1|1|1|0|0|0|1|1|0|...|  &lt;- 1 = peak present
 </span></code></pre></div>
-<h3 id="validity-mask">🎭 Validity Mask<a class="headerlink" href="#validity-mask" title="Permanent link">&para;</a></h3>
+<h3 id="5-validity-mask">5. Validity Mask<a class="headerlink" href="#5-validity-mask" title="Permanent link">&para;</a></h3>
 <p>A <code>[4]</code> binary mask indicating which marks have ground-truth data for this cell line:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">raw_target</span> <span class="o">!=</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>  <span class="c1"># [4]</span>
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c1"># Example: [1, 1, 0, 1] means H3K27me3 data is missing</span>
@@ -1374,7 +1374,7 @@
 <hr />
 <h2 id="data-augmentation">Data Augmentation<a class="headerlink" href="#data-augmentation" title="Permanent link">&para;</a></h2>
 <p>Deep-H applies two augmentations to improve generalization:</p>
-<h3 id="1-random-offset-2000-bp">1. Random Offset (±2,000 bp)<a class="headerlink" href="#1-random-offset-2000-bp" title="Permanent link">&para;</a></h3>
+<h3 id="1-random-offset-2000-bp">1. Random Offset (+/- 2,000 bp)<a class="headerlink" href="#1-random-offset-2000-bp" title="Permanent link">&para;</a></h3>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span> <span class="ow">and</span> <span class="n">config</span><span class="o">.</span><span class="n">AUGMENT_OFFSET_MAX_BP</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    <span class="n">center</span> <span class="o">+=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span>
 </span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>        <span class="o">-</span><span class="n">config</span><span class="o">.</span><span class="n">AUGMENT_OFFSET_MAX_BP</span><span class="p">,</span>  <span class="c1"># -2000</span>
@@ -1383,11 +1383,11 @@
 </span></code></pre></div>
 <div class="admonition example">
 <p class="admonition-title">Why Random Offset?</p>
-<p>The model should learn that a peak is a peak regardless of its exact position within the 32 kb window. A ±2 kb jitter (6% of window size) forces the model to be translation-invariant without losing the peak from the window entirely.</p>
+<p>The model should learn that a peak is a peak regardless of its exact position within the 32 kb window. A +/- 2 kb jitter (6% of window size) forces the model to be translation-invariant without losing the peak from the window entirely.</p>
 </div>
 <h3 id="2-reverse-complement-50-probability">2. Reverse Complement (50% Probability)<a class="headerlink" href="#2-reverse-complement-50-probability" title="Permanent link">&para;</a></h3>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span> <span class="ow">and</span> <span class="n">config</span><span class="o">.</span><span class="n">AUGMENT_RC</span> <span class="ow">and</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">0.5</span><span class="p">:</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    <span class="c1"># Complement: A↔T, C↔G</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    <span class="c1"># Complement: A&lt;-&gt;T, C&lt;-&gt;G</span>
 </span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    <span class="n">comp_table</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
 </span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>    <span class="n">dna_indices</span> <span class="o">=</span> <span class="n">comp_table</span><span class="p">[</span><span class="n">dna_indices</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 </span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>    <span class="c1"># Flip track target to match</span>
@@ -1426,7 +1426,7 @@
 <td><code>target</code></td>
 <td><code>[B, 4]</code></td>
 <td>float32</td>
-<td>Scalar targets (log₂ scale)</td>
+<td>Scalar targets (log2 scale)</td>
 </tr>
 <tr>
 <td><code>mask</code></td>
@@ -1464,7 +1464,7 @@
     <span class="stat-label">Batch Size</span>
   </div>
   <div class="stat-card stat-turquoise">
-    <span class="stat-value">×4</span>
+    <span class="stat-value">x4</span>
     <span class="stat-label">Grad Accum</span>
   </div>
   <div class="stat-card stat-lavender">
