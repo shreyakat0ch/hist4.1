@@ -19,7 +19,7 @@ A cell-type-aware deep learning framework that predicts histone modification lan
 </div>
 
 <div class="diagram-container">
-  <img src="assets/images/Presentation13.png" alt="Deep-H - DNA to Neural Network" style="width: 100%; max-width: 600px; border-radius: 8px;" />
+  <img src="assets/images/Presentation13.png" alt="Deep-H - DNA to Neural Network" style="width: 100%; max-width: 1200px; border-radius: 8px;" />
 </div>
 
 ## What is Deep-H?
