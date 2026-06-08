@@ -1336,9 +1336,40 @@
 <h2 id="window-sampling-strategy">Window Sampling Strategy</h2>
 <p>The most critical design decision in Deep-H's data pipeline is <strong>how we sample training windows</strong>. Naive random sampling would produce &gt;98% background (no peaks), making it impossible for the model to learn peak patterns.</p>
 <h3 id="the-class-imbalance-problem">The Class Imbalance Problem</h3>
-<pre class="mermaid"><code>pie title "Window Sampling Distribution"
-    "Background (No Peaks)" : 98.5
-    "Peak Regions" : 1.5</code></pre>
+<div class="sampling-compare">
+  <div class="sampling-panel">
+    <div class="sampling-panel-head">
+      <span class="sampling-kicker">Naive random sampling</span>
+      <strong>Almost all windows are background</strong>
+    </div>
+    <div class="sampling-bar" aria-label="Naive sampling distribution">
+      <span class="sampling-fill bg" style="width: 98.5%"></span>
+      <span class="sampling-fill peak" style="width: 1.5%"></span>
+    </div>
+    <div class="sampling-legend">
+      <span><i class="bg"></i>98.5% background</span>
+      <span><i class="peak"></i>1.5% peak windows</span>
+    </div>
+    <p>The model mostly sees negatives, so rare histone marks barely influence the gradients.</p>
+  </div>
+
+  <div class="sampling-panel balanced">
+    <div class="sampling-panel-head">
+      <span class="sampling-kicker">Deep-H training sampler</span>
+      <strong>Balanced windows for learning peaks</strong>
+    </div>
+    <div class="sampling-bar" aria-label="Balanced sampling distribution">
+      <span class="sampling-fill peak" style="width: 50%"></span>
+      <span class="sampling-fill bg" style="width: 50%"></span>
+    </div>
+    <div class="sampling-legend">
+      <span><i class="peak"></i>50% peak-centered</span>
+      <span><i class="bg"></i>50% clean background</span>
+    </div>
+    <p>Peak windows teach the model where marks occur; clean background teaches where they do not.</p>
+  </div>
+</div>
+
 <p>Active marks like H3K27ac have tens of thousands of peaks per cell line, but repressive marks like H3K9me3 may have only <strong>50-200 peaks</strong> in some cell lines.</p>
 <h3 id="deep-hs-balanced-sampling">Deep-H's Balanced Sampling</h3>
 <p>Deep-H uses a <strong>50/50 peak-to-background ratio</strong> with intelligent oversampling:</p>
