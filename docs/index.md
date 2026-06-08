@@ -7,7 +7,7 @@ hide:
 # Deep-H
 
 <p class="hero-subtitle">
-A cell-type-aware deep learning framework that predicts histone modification landscapes from DNA sequence and RNA expression profiles.
+Predicting cell-type-specific histone landscapes directly from DNA sequence and RNA expression profiles.
 </p>
 
 <div class="hero-badges">
