@@ -32,7 +32,7 @@ theme:
     - search.highlight
   icon:
     repo: fontawesome/brands/github
-    logo: fontawesome/solid/lion
+    logo: material/layers
 
 extra_css:
   - stylesheets/extra.css
