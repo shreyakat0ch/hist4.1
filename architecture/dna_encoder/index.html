@@ -101,7 +101,7 @@
     <a href="../.." title="Deep-H - Histone Epigenomic Regressor" class="md-header__button md-logo" aria-label="Deep-H - Histone Epigenomic Regressor" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 16 7.36-5.73L21 9l-9-7-9 7 1.63 1.27M12 18.54l-7.38-5.73L3 14.07l9 7 9-7-1.63-1.27z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 2h2v2c0 1.44.68 2.61 1.88 3.78.86.83 2.01 1.63 3.21 2.42l-1.83 1.19C8.27 10.72 7.31 10 6.5 9.21 5.07 7.82 4 6.1 4 4zm14 0h2v2c0 2.1-1.07 3.82-2.5 5.21-1.41 1.38-3.21 2.52-4.96 3.63-1.75 1.12-3.45 2.21-4.66 3.38C6.68 17.39 6 18.56 6 20v2H4v-2c0-2.1 1.07-3.82 2.5-5.21 1.41-1.38 3.21-2.52 4.96-3.63 1.75-1.12 3.45-2.21 4.66-3.38C17.32 6.61 18 5.44 18 4zm-3.26 10.61c.99.67 1.95 1.39 2.76 2.18C18.93 16.18 20 17.9 20 20v2h-2v-2c0-1.44-.68-2.61-1.88-3.78-.86-.83-2.01-1.63-3.21-2.42zM7 3h10v1l-.06.5H7.06L7 4zm.68 3h8.64c-.24.34-.52.69-.9 1.06l-.51.44H9.07l-.49-.44c-.38-.37-.66-.72-.9-1.06m1.41 10.5h5.84l.49.44c.38.37.66.72.9 1.06H7.68c.24-.34.52-.69.9-1.06zm-2.03 3h9.88l.06.5v1H7v-1z"/></svg>
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -355,7 +355,7 @@
     <a href="../.." title="Deep-H - Histone Epigenomic Regressor" class="md-nav__button md-logo" aria-label="Deep-H - Histone Epigenomic Regressor" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 16 7.36-5.73L21 9l-9-7-9 7 1.63 1.27M12 18.54l-7.38-5.73L3 14.07l9 7 9-7-1.63-1.27z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 2h2v2c0 1.44.68 2.61 1.88 3.78.86.83 2.01 1.63 3.21 2.42l-1.83 1.19C8.27 10.72 7.31 10 6.5 9.21 5.07 7.82 4 6.1 4 4zm14 0h2v2c0 2.1-1.07 3.82-2.5 5.21-1.41 1.38-3.21 2.52-4.96 3.63-1.75 1.12-3.45 2.21-4.66 3.38C6.68 17.39 6 18.56 6 20v2H4v-2c0-2.1 1.07-3.82 2.5-5.21 1.41-1.38 3.21-2.52 4.96-3.63 1.75-1.12 3.45-2.21 4.66-3.38C17.32 6.61 18 5.44 18 4zm-3.26 10.61c.99.67 1.95 1.39 2.76 2.18C18.93 16.18 20 17.9 20 20v2h-2v-2c0-1.44-.68-2.61-1.88-3.78-.86-.83-2.01-1.63-3.21-2.42zM7 3h10v1l-.06.5H7.06L7 4zm.68 3h8.64c-.24.34-.52.69-.9 1.06l-.51.44H9.07l-.49-.44c-.38-.37-.66-.72-.9-1.06m1.41 10.5h5.84l.49.44c.38.37.66.72.9 1.06H7.68c.24-.34.52-.69.9-1.06zm-2.03 3h9.88l.06.5v1H7v-1z"/></svg>
 
     </a>
     Deep-H - Histone Epigenomic Regressor
@@ -1175,9 +1175,9 @@
   
 
 
-<h1 id="dna-encoder-multi-resolution-cnn-stem">DNA Encoder - Multi-Resolution CNN Stem<a class="headerlink" href="#dna-encoder-multi-resolution-cnn-stem" title="Permanent link">&para;</a></h1>
+<h1 id="dna-encoder-multi-resolution-cnn-stem">DNA Encoder - Multi-Resolution CNN Stem</h1>
 <p>The DNA encoder is a <strong>three-branch convolutional stem</strong> that extracts features at multiple spatial scales simultaneously. This design captures motifs from single transcription factor binding sites (~10 bp) to entire regulatory domains (~10 kb).</p>
-<h2 id="why-multi-resolution">Why Multi-Resolution?<a class="headerlink" href="#why-multi-resolution" title="Permanent link">&para;</a></h2>
+<h2 id="why-multi-resolution">Why Multi-Resolution?</h2>
 <p>Different histone marks are driven by features at different scales:</p>
 <table>
 <thead>
@@ -1210,7 +1210,7 @@
 </tbody>
 </table>
 <p>A single-resolution CNN would need extremely deep stacking to capture all scales. Instead, Deep-H uses <strong>parallel branches</strong> with different kernel sizes and strides.</p>
-<h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
+<h2 id="architecture">Architecture</h2>
 <pre class="mermaid"><code>flowchart LR
     DNA["DNA&lt;br/&gt;[B, 4, 32768]"] --&gt; A["Branch A&lt;br/&gt;Motif Scale"]
     DNA --&gt; B["Branch B&lt;br/&gt;Nucleosome Scale"]
@@ -1230,7 +1230,7 @@
     style CAT fill:#EDE9FE,stroke:#A78BFA,color:#333
     style MERGE fill:#EDE9FE,stroke:#A78BFA,color:#333
     style OUT fill:#FFE4E6,stroke:#FB7185,color:#333</code></pre>
-<h2 id="branch-a-motif-scale">Branch A - Motif Scale<a class="headerlink" href="#branch-a-motif-scale" title="Permanent link">&para;</a></h2>
+<h2 id="branch-a-motif-scale">Branch A - Motif Scale</h2>
 <p>Focuses on <strong>short-range patterns</strong> like transcription factor binding motifs (6–15 bp):</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="bp">self</span><span class="o">.</span><span class="n">cnn_a</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">nn</span><span class="o">.</span><span class="n">Conv1d</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">7</span><span class="p">),</span>   <span class="c1"># k=15: TF motifs</span>
@@ -1249,7 +1249,7 @@
 <p class="admonition-title">Receptive Field</p>
 <p>Each output token in Branch A has a receptive field of <strong>~240 bp</strong>, perfect for detecting clusters of TF binding sites within a promoter.</p>
 </div>
-<h2 id="branch-b-nucleosome-scale">Branch B - Nucleosome Scale<a class="headerlink" href="#branch-b-nucleosome-scale" title="Permanent link">&para;</a></h2>
+<h2 id="branch-b-nucleosome-scale">Branch B - Nucleosome Scale</h2>
 <p>Captures <strong>medium-range patterns</strong> like nucleosome positioning (147–200 bp):</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="bp">self</span><span class="o">.</span><span class="n">cnn_b</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="n">nn</span><span class="o">.</span><span class="n">Conv1d</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">7</span><span class="p">),</span>    <span class="c1"># k=15 initial filter</span>
@@ -1266,7 +1266,7 @@
 <p class="admonition-title">Wider Strides</p>
 <p>By using stride=8 instead of stride=4, Branch B sees a wider context per step. The larger first-layer kernel (k=15) at stride=8 captures the ~147 bp periodicity of nucleosome arrays.</p>
 </div>
-<h2 id="branch-c-domain-scale">Branch C - Domain Scale<a class="headerlink" href="#branch-c-domain-scale" title="Permanent link">&para;</a></h2>
+<h2 id="branch-c-domain-scale">Branch C - Domain Scale</h2>
 <p>Captures <strong>long-range patterns</strong> spanning kilobases, important for broad repressive marks:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="bp">self</span><span class="o">.</span><span class="n">cnn_c</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="n">nn</span><span class="o">.</span><span class="n">Conv1d</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">15</span><span class="p">),</span>    <span class="c1"># k=31: very wide filter</span>
@@ -1283,7 +1283,7 @@
 <p class="admonition-title">Largest Kernel</p>
 <p>The initial k=31 convolution in Branch C spans ~31 bp in the first layer, but after strides accumulate, each output token sees a receptive field of <strong>&gt;2,000 bp</strong>, capturing features at the kilobase scale relevant to H3K27me3 and H3K9me3 domains.</p>
 </div>
-<h2 id="merge-projection">Merge Projection<a class="headerlink" href="#merge-projection" title="Permanent link">&para;</a></h2>
+<h2 id="merge-projection">Merge Projection</h2>
 <p>The three branch outputs are concatenated along the channel dimension and projected down:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="bp">self</span><span class="o">.</span><span class="n">cnn_merge</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="n">nn</span><span class="o">.</span><span class="n">Conv1d</span><span class="p">(</span><span class="mi">768</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">D_MODEL</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>  <span class="c1"># 768 → 256 via 1x1 conv</span>

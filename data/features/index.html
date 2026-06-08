@@ -101,7 +101,7 @@
     <a href="../.." title="Deep-H - Histone Epigenomic Regressor" class="md-header__button md-logo" aria-label="Deep-H - Histone Epigenomic Regressor" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 16 7.36-5.73L21 9l-9-7-9 7 1.63 1.27M12 18.54l-7.38-5.73L3 14.07l9 7 9-7-1.63-1.27z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 2h2v2c0 1.44.68 2.61 1.88 3.78.86.83 2.01 1.63 3.21 2.42l-1.83 1.19C8.27 10.72 7.31 10 6.5 9.21 5.07 7.82 4 6.1 4 4zm14 0h2v2c0 2.1-1.07 3.82-2.5 5.21-1.41 1.38-3.21 2.52-4.96 3.63-1.75 1.12-3.45 2.21-4.66 3.38C6.68 17.39 6 18.56 6 20v2H4v-2c0-2.1 1.07-3.82 2.5-5.21 1.41-1.38 3.21-2.52 4.96-3.63 1.75-1.12 3.45-2.21 4.66-3.38C17.32 6.61 18 5.44 18 4zm-3.26 10.61c.99.67 1.95 1.39 2.76 2.18C18.93 16.18 20 17.9 20 20v2h-2v-2c0-1.44-.68-2.61-1.88-3.78-.86-.83-2.01-1.63-3.21-2.42zM7 3h10v1l-.06.5H7.06L7 4zm.68 3h8.64c-.24.34-.52.69-.9 1.06l-.51.44H9.07l-.49-.44c-.38-.37-.66-.72-.9-1.06m1.41 10.5h5.84l.49.44c.38.37.66.72.9 1.06H7.68c.24-.34.52-.69.9-1.06zm-2.03 3h9.88l.06.5v1H7v-1z"/></svg>
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -355,7 +355,7 @@
     <a href="../.." title="Deep-H - Histone Epigenomic Regressor" class="md-nav__button md-logo" aria-label="Deep-H - Histone Epigenomic Regressor" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 16 7.36-5.73L21 9l-9-7-9 7 1.63 1.27M12 18.54l-7.38-5.73L3 14.07l9 7 9-7-1.63-1.27z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 2h2v2c0 1.44.68 2.61 1.88 3.78.86.83 2.01 1.63 3.21 2.42l-1.83 1.19C8.27 10.72 7.31 10 6.5 9.21 5.07 7.82 4 6.1 4 4zm14 0h2v2c0 2.1-1.07 3.82-2.5 5.21-1.41 1.38-3.21 2.52-4.96 3.63-1.75 1.12-3.45 2.21-4.66 3.38C6.68 17.39 6 18.56 6 20v2H4v-2c0-2.1 1.07-3.82 2.5-5.21 1.41-1.38 3.21-2.52 4.96-3.63 1.75-1.12 3.45-2.21 4.66-3.38C17.32 6.61 18 5.44 18 4zm-3.26 10.61c.99.67 1.95 1.39 2.76 2.18C18.93 16.18 20 17.9 20 20v2h-2v-2c0-1.44-.68-2.61-1.88-3.78-.86-.83-2.01-1.63-3.21-2.42zM7 3h10v1l-.06.5H7.06L7 4zm.68 3h8.64c-.24.34-.52.69-.9 1.06l-.51.44H9.07l-.49-.44c-.38-.37-.66-.72-.9-1.06m1.41 10.5h5.84l.49.44c.38.37.66.72.9 1.06H7.68c.24-.34.52-.69.9-1.06zm-2.03 3h9.88l.06.5v1H7v-1z"/></svg>
 
     </a>
     Deep-H - Histone Epigenomic Regressor
@@ -1287,11 +1287,11 @@
   
 
 
-<h1 id="feature-engineering">Feature Engineering<a class="headerlink" href="#feature-engineering" title="Permanent link">&para;</a></h1>
+<h1 id="feature-engineering">Feature Engineering</h1>
 <p>Once windows are sampled, Deep-H extracts features and applies augmentations to create model-ready tensors. This page explains each feature type and the augmentation strategy.</p>
-<h2 id="per-window-features">Per-Window Features<a class="headerlink" href="#per-window-features" title="Permanent link">&para;</a></h2>
+<h2 id="per-window-features">Per-Window Features</h2>
 <p>For each sampled window <code>(cell_line, chromosome, center)</code>, Deep-H extracts:</p>
-<h3 id="1-dna-input-one-hot-encoding">1. DNA Input: One-Hot Encoding<a class="headerlink" href="#1-dna-input-one-hot-encoding" title="Permanent link">&para;</a></h3>
+<h3 id="1-dna-input-one-hot-encoding">1. DNA Input: One-Hot Encoding</h3>
 <p>The 32,768 bp DNA sequence is converted into a <code>[4, 32768]</code> one-hot tensor:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Nucleotide encoding: A=0, C=1, G=2, T=3, N=4</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># One-hot: row 4 (N) maps to all-zeros</span>
@@ -1313,7 +1313,7 @@
 </span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>             <span class="p">)[:,</span> <span class="p">:,</span> <span class="p">:</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">permute</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
 </span></code></pre></div>
 </div>
-<h3 id="2-rna-input-expression-vector">2. RNA Input: Expression Vector<a class="headerlink" href="#2-rna-input-expression-vector" title="Permanent link">&para;</a></h3>
+<h3 id="2-rna-input-expression-vector">2. RNA Input: Expression Vector</h3>
 <p>The cell line's RNA fingerprint is a pre-computed <code>[4000]</code> float vector:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">rna</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rna_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dummy_rna</span><span class="p">)</span>  <span class="c1"># [4000]</span>
 </span></code></pre></div>
@@ -1343,7 +1343,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="3-scalar-target-peak-intensity">3. Scalar Target: Peak Intensity<a class="headerlink" href="#3-scalar-target-peak-intensity" title="Permanent link">&para;</a></h3>
+<h3 id="3-scalar-target-peak-intensity">3. Scalar Target: Peak Intensity</h3>
 <p>For each of the 4 histone marks, the target is the <strong>log2(signal + 1)</strong> value at the window center:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">raw_target</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cell_index</span><span class="p">[</span><span class="n">cell</span><span class="p">]</span><span class="o">.</span><span class="n">lookup_signal</span><span class="p">(</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="n">chrom</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">start</span> <span class="o">+</span> <span class="n">config</span><span class="o">.</span><span class="n">WINDOW_SIZE</span>
@@ -1353,7 +1353,7 @@
 <p class="admonition-title">Why log2(signal + 1)?</p>
 <p>ChIP-seq signal values span 4+ orders of magnitude. Log-transformation compresses this range and makes Huber loss equally sensitive to fold-changes at all intensity levels. The <code>+1</code> prevents log(0).</p>
 </div>
-<h3 id="4-track-target-binary-peak-map">4. Track Target: Binary Peak Map<a class="headerlink" href="#4-track-target-binary-peak-map" title="Permanent link">&para;</a></h3>
+<h3 id="4-track-target-binary-peak-map">4. Track Target: Binary Peak Map</h3>
 <p>A <code>[4, 512]</code> binary tensor indicating which of the 512 spatial bins (64 bp each) overlap a peak:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">track_target</span><span class="p">,</span> <span class="n">track_valid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cell_index</span><span class="p">[</span><span class="n">cell</span><span class="p">]</span><span class="o">.</span><span class="n">lookup_track</span><span class="p">(</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="n">chrom</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">start</span> <span class="o">+</span> <span class="n">config</span><span class="o">.</span><span class="n">WINDOW_SIZE</span><span class="p">,</span>
@@ -1366,15 +1366,15 @@
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Bins:   |1|2|3|4|...............512|   (64 bp each)
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Track:  |0|0|1|1|1|1|0|0|0|1|1|0|...|  &lt;- 1 = peak present
 </span></code></pre></div>
-<h3 id="5-validity-mask">5. Validity Mask<a class="headerlink" href="#5-validity-mask" title="Permanent link">&para;</a></h3>
+<h3 id="5-validity-mask">5. Validity Mask</h3>
 <p>A <code>[4]</code> binary mask indicating which marks have ground-truth data for this cell line:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">raw_target</span> <span class="o">!=</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>  <span class="c1"># [4]</span>
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c1"># Example: [1, 1, 0, 1] means H3K27me3 data is missing</span>
 </span></code></pre></div>
 <hr />
-<h2 id="data-augmentation">Data Augmentation<a class="headerlink" href="#data-augmentation" title="Permanent link">&para;</a></h2>
+<h2 id="data-augmentation">Data Augmentation</h2>
 <p>Deep-H applies two augmentations to improve generalization:</p>
-<h3 id="1-random-offset-2000-bp">1. Random Offset (+/- 2,000 bp)<a class="headerlink" href="#1-random-offset-2000-bp" title="Permanent link">&para;</a></h3>
+<h3 id="1-random-offset-2000-bp">1. Random Offset (+/- 2,000 bp)</h3>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span> <span class="ow">and</span> <span class="n">config</span><span class="o">.</span><span class="n">AUGMENT_OFFSET_MAX_BP</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    <span class="n">center</span> <span class="o">+=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span>
 </span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>        <span class="o">-</span><span class="n">config</span><span class="o">.</span><span class="n">AUGMENT_OFFSET_MAX_BP</span><span class="p">,</span>  <span class="c1"># -2000</span>
@@ -1385,7 +1385,7 @@
 <p class="admonition-title">Why Random Offset?</p>
 <p>The model should learn that a peak is a peak regardless of its exact position within the 32 kb window. A +/- 2 kb jitter (6% of window size) forces the model to be translation-invariant without losing the peak from the window entirely.</p>
 </div>
-<h3 id="2-reverse-complement-50-probability">2. Reverse Complement (50% Probability)<a class="headerlink" href="#2-reverse-complement-50-probability" title="Permanent link">&para;</a></h3>
+<h3 id="2-reverse-complement-50-probability">2. Reverse Complement (50% Probability)</h3>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">training</span> <span class="ow">and</span> <span class="n">config</span><span class="o">.</span><span class="n">AUGMENT_RC</span> <span class="ow">and</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">0.5</span><span class="p">:</span>
 </span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    <span class="c1"># Complement: A&lt;-&gt;T, C&lt;-&gt;G</span>
 </span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    <span class="n">comp_table</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
@@ -1398,7 +1398,7 @@
 <p>DNA is double-stranded. A histone mark at a genomic position exists on <strong>both strands</strong>. By training on both orientations, the model learns strand-invariant features, effectively doubling the training data.</p>
 </div>
 <hr />
-<h2 id="final-tensor-shapes">Final Tensor Shapes<a class="headerlink" href="#final-tensor-shapes" title="Permanent link">&para;</a></h2>
+<h2 id="final-tensor-shapes">Final Tensor Shapes</h2>
 <p>The DataLoader yields batches of:</p>
 <table>
 <thead>

@@ -138,8 +138,23 @@ body, .md-main {
 .hero-subtitle {
   font-size: 1.2em;
   color: #555;
-  max-width: 700px;
+  max-width: 920px;
   margin: 0 auto 24px;
+  text-align: center;
+}
+
+.deeph-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.deeph-title img {
+  width: 52px;
+  height: 52px;
+  flex: 0 0 52px;
+  border: 0;
+  border-radius: 0;
 }
 
 /* ── Admonitions (Subtle) ──────────────────────────────────── */
@@ -183,6 +198,35 @@ body, .md-main {
 .diagram-container img {
   max-width: 100%;
   border: none;
+}
+
+.hero-visual {
+  min-height: clamp(360px, 46vw, 500px);
+  height: auto;
+  padding: 24px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-visual img {
+  width: clamp(320px, 52%, 440px);
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 8px;
+}
+
+@media screen and (max-width: 600px) {
+  .hero-visual {
+    min-height: 340px;
+  }
+
+  .hero-visual img {
+    width: min(88%, 360px);
+  }
 }
 
 .diagram-caption {

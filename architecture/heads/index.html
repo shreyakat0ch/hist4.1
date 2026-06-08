@@ -101,7 +101,7 @@
     <a href="../.." title="Deep-H - Histone Epigenomic Regressor" class="md-header__button md-logo" aria-label="Deep-H - Histone Epigenomic Regressor" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 16 7.36-5.73L21 9l-9-7-9 7 1.63 1.27M12 18.54l-7.38-5.73L3 14.07l9 7 9-7-1.63-1.27z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 2h2v2c0 1.44.68 2.61 1.88 3.78.86.83 2.01 1.63 3.21 2.42l-1.83 1.19C8.27 10.72 7.31 10 6.5 9.21 5.07 7.82 4 6.1 4 4zm14 0h2v2c0 2.1-1.07 3.82-2.5 5.21-1.41 1.38-3.21 2.52-4.96 3.63-1.75 1.12-3.45 2.21-4.66 3.38C6.68 17.39 6 18.56 6 20v2H4v-2c0-2.1 1.07-3.82 2.5-5.21 1.41-1.38 3.21-2.52 4.96-3.63 1.75-1.12 3.45-2.21 4.66-3.38C17.32 6.61 18 5.44 18 4zm-3.26 10.61c.99.67 1.95 1.39 2.76 2.18C18.93 16.18 20 17.9 20 20v2h-2v-2c0-1.44-.68-2.61-1.88-3.78-.86-.83-2.01-1.63-3.21-2.42zM7 3h10v1l-.06.5H7.06L7 4zm.68 3h8.64c-.24.34-.52.69-.9 1.06l-.51.44H9.07l-.49-.44c-.38-.37-.66-.72-.9-1.06m1.41 10.5h5.84l.49.44c.38.37.66.72.9 1.06H7.68c.24-.34.52-.69.9-1.06zm-2.03 3h9.88l.06.5v1H7v-1z"/></svg>
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -355,7 +355,7 @@
     <a href="../.." title="Deep-H - Histone Epigenomic Regressor" class="md-nav__button md-logo" aria-label="Deep-H - Histone Epigenomic Regressor" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 16 7.36-5.73L21 9l-9-7-9 7 1.63 1.27M12 18.54l-7.38-5.73L3 14.07l9 7 9-7-1.63-1.27z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 2h2v2c0 1.44.68 2.61 1.88 3.78.86.83 2.01 1.63 3.21 2.42l-1.83 1.19C8.27 10.72 7.31 10 6.5 9.21 5.07 7.82 4 6.1 4 4zm14 0h2v2c0 2.1-1.07 3.82-2.5 5.21-1.41 1.38-3.21 2.52-4.96 3.63-1.75 1.12-3.45 2.21-4.66 3.38C6.68 17.39 6 18.56 6 20v2H4v-2c0-2.1 1.07-3.82 2.5-5.21 1.41-1.38 3.21-2.52 4.96-3.63 1.75-1.12 3.45-2.21 4.66-3.38C17.32 6.61 18 5.44 18 4zm-3.26 10.61c.99.67 1.95 1.39 2.76 2.18C18.93 16.18 20 17.9 20 20v2h-2v-2c0-1.44-.68-2.61-1.88-3.78-.86-.83-2.01-1.63-3.21-2.42zM7 3h10v1l-.06.5H7.06L7 4zm.68 3h8.64c-.24.34-.52.69-.9 1.06l-.51.44H9.07l-.49-.44c-.38-.37-.66-.72-.9-1.06m1.41 10.5h5.84l.49.44c.38.37.66.72.9 1.06H7.68c.24-.34.52-.69.9-1.06zm-2.03 3h9.88l.06.5v1H7v-1z"/></svg>
 
     </a>
     Deep-H - Histone Epigenomic Regressor
@@ -1165,9 +1165,9 @@
   
 
 
-<h1 id="prediction-heads-dual-output-architecture">Prediction Heads - Dual Output Architecture<a class="headerlink" href="#prediction-heads-dual-output-architecture" title="Permanent link">&para;</a></h1>
+<h1 id="prediction-heads-dual-output-architecture">Prediction Heads - Dual Output Architecture</h1>
 <p>After the BiMamba and Cross-Attention layers, the 512 DNA tokens (each representing 64 bp) contain rich, cell-type-aware contextual information. Deep-H forks this representation into two independent heads: a <strong>Scalar Head</strong> and a <strong>Track Head</strong>.</p>
-<h2 id="1-track-head-spatial-localization">1. Track Head (Spatial Localization)<a class="headerlink" href="#1-track-head-spatial-localization" title="Permanent link">&para;</a></h2>
+<h2 id="1-track-head-spatial-localization">1. Track Head (Spatial Localization)</h2>
 <p>The Track Head predicts <em>where</em> peaks are located at high resolution (64 bp bins).</p>
 <p>Before making predictions, the spatial DNA features receive one final cell-type modulation specifically for localization:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 1. RNA FiLM gate specifically for the track head</span>
@@ -1185,15 +1185,15 @@
 <p class="admonition-title">Why 1x1 Convolution?</p>
 <p>A 1x1 convolution acts as a position-wise linear layer. It independently maps the 256-dimensional feature vector at <em>each</em> of the 512 spatial bins into 4 logits (one for each histone mark). There is no pooling, the spatial resolution is perfectly preserved.</p>
 </div>
-<h2 id="2-scalar-heads-peak-intensity">2. Scalar Heads (Peak Intensity)<a class="headerlink" href="#2-scalar-heads-peak-intensity" title="Permanent link">&para;</a></h2>
+<h2 id="2-scalar-heads-peak-intensity">2. Scalar Heads (Peak Intensity)</h2>
 <p>The Scalar Head predicts the overall intensity <code>log2(signal + 1)</code> of each mark within the window.</p>
 <p>Because different histone marks have vastly different spatial footprints (e.g., H3K4me3 is sharp, H3K27me3 is broad), Deep-H uses <strong>Per-Mark Attention Pooling</strong> rather than a generic global average pool.</p>
-<h3 id="step-a-positional-encoding">Step A: Positional Encoding<a class="headerlink" href="#step-a-positional-encoding" title="Permanent link">&para;</a></h3>
+<h3 id="step-a-positional-encoding">Step A: Positional Encoding</h3>
 <p>Since the downstream attention pooling is permutation-invariant, we first inject explicit positional information:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Lets the pooling head know where each token is relative to the center</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">dna_feat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pos_enc</span><span class="p">(</span><span class="n">dna_feat</span><span class="p">)</span>
 </span></code></pre></div>
-<h3 id="step-b-mark-specific-context-pooling">Step B: Mark-Specific Context Pooling<a class="headerlink" href="#step-b-mark-specific-context-pooling" title="Permanent link">&para;</a></h3>
+<h3 id="step-b-mark-specific-context-pooling">Step B: Mark-Specific Context Pooling</h3>
 <p>Each mark has its own learnable query vector that attends only to a mark-specific central window:</p>
 <table>
 <thead>
@@ -1238,7 +1238,7 @@
 </span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
 </span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="n">pooled_feats</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">attn_out</span><span class="p">)</span>
 </span></code></pre></div>
-<h3 id="step-c-rna-concatenation-regression">Step C: RNA Concatenation &amp; Regression<a class="headerlink" href="#step-c-rna-concatenation-regression" title="Permanent link">&para;</a></h3>
+<h3 id="step-c-rna-concatenation-regression">Step C: RNA Concatenation &amp; Regression</h3>
 <p>As a final safeguard, the original RNA cell-type embedding is directly concatenated to the pooled DNA features before passing through independent MLPs for each mark:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">for</span> <span class="n">mark_feat</span><span class="p">,</span> <span class="n">head</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">pooled_feats</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mark_heads</span><span class="p">):</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="c1"># Concatenate DNA pooled features [B, 256] with RNA projection [B, 256]</span>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Deep-H DNA logo</title>
+  <defs>
+    <linearGradient id="bg" x1="8" y1="6" x2="56" y2="58" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5d4037"/>
+      <stop offset="1" stop-color="#9a6b59"/>
+    </linearGradient>
+    <linearGradient id="helix" x1="20" y1="12" x2="44" y2="52" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7dd3c7"/>
+      <stop offset="1" stop-color="#f4b183"/>
+    </linearGradient>
+  </defs>
+  <rect x="3" y="3" width="58" height="58" rx="14" fill="url(#bg)"/>
+  <path d="M21 13c16 9 16 29 0 38M43 13c-16 9-16 29 0 38" fill="none" stroke="url(#helix)" stroke-width="5" stroke-linecap="round"/>
+  <path d="M23 18h18M20 26h24M20 38h24M23 46h18" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" opacity=".92"/>
+  <circle cx="21" cy="13" r="2.5" fill="#fff"/>
+  <circle cx="43" cy="51" r="2.5" fill="#fff"/>
+</svg>

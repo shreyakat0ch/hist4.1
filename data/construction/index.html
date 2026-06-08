@@ -101,7 +101,7 @@
     <a href="../.." title="Deep-H - Histone Epigenomic Regressor" class="md-header__button md-logo" aria-label="Deep-H - Histone Epigenomic Regressor" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 16 7.36-5.73L21 9l-9-7-9 7 1.63 1.27M12 18.54l-7.38-5.73L3 14.07l9 7 9-7-1.63-1.27z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 2h2v2c0 1.44.68 2.61 1.88 3.78.86.83 2.01 1.63 3.21 2.42l-1.83 1.19C8.27 10.72 7.31 10 6.5 9.21 5.07 7.82 4 6.1 4 4zm14 0h2v2c0 2.1-1.07 3.82-2.5 5.21-1.41 1.38-3.21 2.52-4.96 3.63-1.75 1.12-3.45 2.21-4.66 3.38C6.68 17.39 6 18.56 6 20v2H4v-2c0-2.1 1.07-3.82 2.5-5.21 1.41-1.38 3.21-2.52 4.96-3.63 1.75-1.12 3.45-2.21 4.66-3.38C17.32 6.61 18 5.44 18 4zm-3.26 10.61c.99.67 1.95 1.39 2.76 2.18C18.93 16.18 20 17.9 20 20v2h-2v-2c0-1.44-.68-2.61-1.88-3.78-.86-.83-2.01-1.63-3.21-2.42zM7 3h10v1l-.06.5H7.06L7 4zm.68 3h8.64c-.24.34-.52.69-.9 1.06l-.51.44H9.07l-.49-.44c-.38-.37-.66-.72-.9-1.06m1.41 10.5h5.84l.49.44c.38.37.66.72.9 1.06H7.68c.24-.34.52-.69.9-1.06zm-2.03 3h9.88l.06.5v1H7v-1z"/></svg>
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -355,7 +355,7 @@
     <a href="../.." title="Deep-H - Histone Epigenomic Regressor" class="md-nav__button md-logo" aria-label="Deep-H - Histone Epigenomic Regressor" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 16 7.36-5.73L21 9l-9-7-9 7 1.63 1.27M12 18.54l-7.38-5.73L3 14.07l9 7 9-7-1.63-1.27z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 2h2v2c0 1.44.68 2.61 1.88 3.78.86.83 2.01 1.63 3.21 2.42l-1.83 1.19C8.27 10.72 7.31 10 6.5 9.21 5.07 7.82 4 6.1 4 4zm14 0h2v2c0 2.1-1.07 3.82-2.5 5.21-1.41 1.38-3.21 2.52-4.96 3.63-1.75 1.12-3.45 2.21-4.66 3.38C6.68 17.39 6 18.56 6 20v2H4v-2c0-2.1 1.07-3.82 2.5-5.21 1.41-1.38 3.21-2.52 4.96-3.63 1.75-1.12 3.45-2.21 4.66-3.38C17.32 6.61 18 5.44 18 4zm-3.26 10.61c.99.67 1.95 1.39 2.76 2.18C18.93 16.18 20 17.9 20 20v2h-2v-2c0-1.44-.68-2.61-1.88-3.78-.86-.83-2.01-1.63-3.21-2.42zM7 3h10v1l-.06.5H7.06L7 4zm.68 3h8.64c-.24.34-.52.69-.9 1.06l-.51.44H9.07l-.49-.44c-.38-.37-.66-.72-.9-1.06m1.41 10.5h5.84l.49.44c.38.37.66.72.9 1.06H7.68c.24-.34.52-.69.9-1.06zm-2.03 3h9.88l.06.5v1H7v-1z"/></svg>
 
     </a>
     Deep-H - Histone Epigenomic Regressor
@@ -1265,11 +1265,11 @@
   
 
 
-<h1 id="data-construction">Data Construction<a class="headerlink" href="#data-construction" title="Permanent link">&para;</a></h1>
+<h1 id="data-construction">Data Construction</h1>
 <p>This page explains how Deep-H constructs its training dataset from raw biological data, covering the three data sources and the window sampling strategy that balances peak-rich and background regions.</p>
-<h2 id="raw-data-sources">Raw Data Sources<a class="headerlink" href="#raw-data-sources" title="Permanent link">&para;</a></h2>
+<h2 id="raw-data-sources">Raw Data Sources</h2>
 <p>Deep-H requires three types of input data:</p>
-<h3 id="1-reference-genome-hg38">1. Reference Genome (hg38)<a class="headerlink" href="#1-reference-genome-hg38" title="Permanent link">&para;</a></h3>
+<h3 id="1-reference-genome-hg38">1. Reference Genome (hg38)</h3>
 <p>The human reference genome provides the DNA sequence context for every training window.</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>hg38.fa - 3.1 billion base pairs
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── chr1  (248,956,422 bp)
@@ -1288,7 +1288,7 @@
 </span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">mmap</span><span class="p">[</span><span class="n">offset</span><span class="p">:</span><span class="n">offset</span><span class="o">+</span><span class="n">length</span><span class="p">]</span>
 </span></code></pre></div>
 </div>
-<h3 id="2-rna-seq-expression-profiles">2. RNA-seq Expression Profiles<a class="headerlink" href="#2-rna-seq-expression-profiles" title="Permanent link">&para;</a></h3>
+<h3 id="2-rna-seq-expression-profiles">2. RNA-seq Expression Profiles</h3>
 <p>Each cell line has a <strong>4,000-dimensional expression vector</strong> representing the most variable genes across all 440 cell lines.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># The RNA fingerprint for each cell line</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">rna_map</span> <span class="o">=</span> <span class="p">{</span>
@@ -1302,7 +1302,7 @@
 <p class="admonition-title">Why Top 4,000 Genes?</p>
 <p>Using all ~20,000 genes would add unnecessary noise. The top 4,000 most variable genes capture &gt;95% of the cell-type identity information while keeping the input dimension manageable.</p>
 </div>
-<h3 id="3-chip-seq-bed-files-ground-truth">3. ChIP-seq BED Files (Ground Truth)<a class="headerlink" href="#3-chip-seq-bed-files-ground-truth" title="Permanent link">&para;</a></h3>
+<h3 id="3-chip-seq-bed-files-ground-truth">3. ChIP-seq BED Files (Ground Truth)</h3>
 <p>For each cell line, BED files define the <strong>genomic coordinates where each histone mark is present</strong>:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a># Example: H3K27ac.bed for cell line K562
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>chr1    10400    10600    .    5.3    .    ...
@@ -1333,14 +1333,14 @@
 <p>Some cell lines only have data for 1-3 of the 4 marks. Deep-H handles this gracefully with a <strong>validity mask</strong>; missing marks are excluded from loss computation during training.</p>
 </div>
 <hr />
-<h2 id="window-sampling-strategy">Window Sampling Strategy<a class="headerlink" href="#window-sampling-strategy" title="Permanent link">&para;</a></h2>
+<h2 id="window-sampling-strategy">Window Sampling Strategy</h2>
 <p>The most critical design decision in Deep-H's data pipeline is <strong>how we sample training windows</strong>. Naive random sampling would produce &gt;98% background (no peaks), making it impossible for the model to learn peak patterns.</p>
-<h3 id="the-class-imbalance-problem">The Class Imbalance Problem<a class="headerlink" href="#the-class-imbalance-problem" title="Permanent link">&para;</a></h3>
+<h3 id="the-class-imbalance-problem">The Class Imbalance Problem</h3>
 <pre class="mermaid"><code>pie title "Window Sampling Distribution"
     "Background (No Peaks)" : 98.5
     "Peak Regions" : 1.5</code></pre>
 <p>Active marks like H3K27ac have tens of thousands of peaks per cell line, but repressive marks like H3K9me3 may have only <strong>50-200 peaks</strong> in some cell lines.</p>
-<h3 id="deep-hs-balanced-sampling">Deep-H's Balanced Sampling<a class="headerlink" href="#deep-hs-balanced-sampling" title="Permanent link">&para;</a></h3>
+<h3 id="deep-hs-balanced-sampling">Deep-H's Balanced Sampling</h3>
 <p>Deep-H uses a <strong>50/50 peak-to-background ratio</strong> with intelligent oversampling:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># config.py</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">PEAK_FRAC</span> <span class="o">=</span> <span class="mf">0.50</span>      <span class="c1"># 50% peak-centered windows</span>
@@ -1374,7 +1374,7 @@
   </div>
 </div>
 
-<h3 id="why-oversampling-sparse-marks">Why Oversampling Sparse Marks?<a class="headerlink" href="#why-oversampling-sparse-marks" title="Permanent link">&para;</a></h3>
+<h3 id="why-oversampling-sparse-marks">Why Oversampling Sparse Marks?</h3>
 <p>Without oversampling, the training distribution is heavily skewed:</p>
 <table>
 <thead>
@@ -1416,7 +1416,7 @@
 <p class="admonition-title">Key Insight</p>
 <p>Oversampling with replacement + random offset augmentation (+/-2000 bp) means the model sees the same peak <strong>multiple times</strong> but with <strong>different surrounding DNA context</strong> each time, preventing memorization while ensuring rare marks get adequate training signal.</p>
 </div>
-<h3 id="cache-validation">Cache Validation<a class="headerlink" href="#cache-validation" title="Permanent link">&para;</a></h3>
+<h3 id="cache-validation">Cache Validation</h3>
 <p>The cached windows include metadata to detect stale data:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="s2">&quot;cache_version&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>

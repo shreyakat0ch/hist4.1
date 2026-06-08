@@ -101,7 +101,7 @@
     <a href="../.." title="Deep-H - Histone Epigenomic Regressor" class="md-header__button md-logo" aria-label="Deep-H - Histone Epigenomic Regressor" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 16 7.36-5.73L21 9l-9-7-9 7 1.63 1.27M12 18.54l-7.38-5.73L3 14.07l9 7 9-7-1.63-1.27z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 2h2v2c0 1.44.68 2.61 1.88 3.78.86.83 2.01 1.63 3.21 2.42l-1.83 1.19C8.27 10.72 7.31 10 6.5 9.21 5.07 7.82 4 6.1 4 4zm14 0h2v2c0 2.1-1.07 3.82-2.5 5.21-1.41 1.38-3.21 2.52-4.96 3.63-1.75 1.12-3.45 2.21-4.66 3.38C6.68 17.39 6 18.56 6 20v2H4v-2c0-2.1 1.07-3.82 2.5-5.21 1.41-1.38 3.21-2.52 4.96-3.63 1.75-1.12 3.45-2.21 4.66-3.38C17.32 6.61 18 5.44 18 4zm-3.26 10.61c.99.67 1.95 1.39 2.76 2.18C18.93 16.18 20 17.9 20 20v2h-2v-2c0-1.44-.68-2.61-1.88-3.78-.86-.83-2.01-1.63-3.21-2.42zM7 3h10v1l-.06.5H7.06L7 4zm.68 3h8.64c-.24.34-.52.69-.9 1.06l-.51.44H9.07l-.49-.44c-.38-.37-.66-.72-.9-1.06m1.41 10.5h5.84l.49.44c.38.37.66.72.9 1.06H7.68c.24-.34.52-.69.9-1.06zm-2.03 3h9.88l.06.5v1H7v-1z"/></svg>
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -355,7 +355,7 @@
     <a href="../.." title="Deep-H - Histone Epigenomic Regressor" class="md-nav__button md-logo" aria-label="Deep-H - Histone Epigenomic Regressor" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 16 7.36-5.73L21 9l-9-7-9 7 1.63 1.27M12 18.54l-7.38-5.73L3 14.07l9 7 9-7-1.63-1.27z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 2h2v2c0 1.44.68 2.61 1.88 3.78.86.83 2.01 1.63 3.21 2.42l-1.83 1.19C8.27 10.72 7.31 10 6.5 9.21 5.07 7.82 4 6.1 4 4zm14 0h2v2c0 2.1-1.07 3.82-2.5 5.21-1.41 1.38-3.21 2.52-4.96 3.63-1.75 1.12-3.45 2.21-4.66 3.38C6.68 17.39 6 18.56 6 20v2H4v-2c0-2.1 1.07-3.82 2.5-5.21 1.41-1.38 3.21-2.52 4.96-3.63 1.75-1.12 3.45-2.21 4.66-3.38C17.32 6.61 18 5.44 18 4zm-3.26 10.61c.99.67 1.95 1.39 2.76 2.18C18.93 16.18 20 17.9 20 20v2h-2v-2c0-1.44-.68-2.61-1.88-3.78-.86-.83-2.01-1.63-3.21-2.42zM7 3h10v1l-.06.5H7.06L7 4zm.68 3h8.64c-.24.34-.52.69-.9 1.06l-.51.44H9.07l-.49-.44c-.38-.37-.66-.72-.9-1.06m1.41 10.5h5.84l.49.44c.38.37.66.72.9 1.06H7.68c.24-.34.52-.69.9-1.06zm-2.03 3h9.88l.06.5v1H7v-1z"/></svg>
 
     </a>
     Deep-H - Histone Epigenomic Regressor
@@ -1153,11 +1153,11 @@
   
 
 
-<h1 id="bimamba-ssm-cell-conditioned-sequence-modeling">BiMamba SSM - Cell-Conditioned Sequence Modeling<a class="headerlink" href="#bimamba-ssm-cell-conditioned-sequence-modeling" title="Permanent link">&para;</a></h1>
+<h1 id="bimamba-ssm-cell-conditioned-sequence-modeling">BiMamba SSM - Cell-Conditioned Sequence Modeling</h1>
 <p>The core sequence modeling engine of Deep-H is a stack of 4 <strong>Bidirectional Mamba-2</strong> (BiMamba) layers. Mamba-2 is a state-of-the-art selective state space model that processes sequences in linear time O(L) while maintaining a theoretically infinite receptive field.</p>
-<h2 id="why-mamba-instead-of-transformers">Why Mamba instead of Transformers?<a class="headerlink" href="#why-mamba-instead-of-transformers" title="Permanent link">&para;</a></h2>
+<h2 id="why-mamba-instead-of-transformers">Why Mamba instead of Transformers?</h2>
 <p>DNA sequences are long (32,768 bp). Even after downsampling to 512 tokens via the CNN stem, self-attention scales quadratically, making it memory-intensive and slow. Mamba-2 scales <strong>linearly</strong>, allowing Deep-H to process long genomic contexts efficiently without sacrificing performance.</p>
-<h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
+<h2 id="architecture">Architecture</h2>
 <pre class="mermaid"><code>flowchart TD
     IN["DNA Features&lt;br/&gt;[B, 512, 256]"] --&gt; F1
     RNA["RNA Embedding&lt;br/&gt;[B, 512]"] --&gt;|"Linear"| F1["FiLM γ, β&lt;br/&gt;Layer 1"]
@@ -1179,7 +1179,7 @@
     style FWD1 fill:#FFE4E6,stroke:#FB7185,color:#333
     style BWD1 fill:#FFE4E6,stroke:#FB7185,color:#333
     style OUT fill:#FFE0E0,stroke:#FF6B6B,color:#333</code></pre>
-<h2 id="1-per-layer-film-conditioning">1. Per-Layer FiLM Conditioning<a class="headerlink" href="#1-per-layer-film-conditioning" title="Permanent link">&para;</a></h2>
+<h2 id="1-per-layer-film-conditioning">1. Per-Layer FiLM Conditioning</h2>
 <p>Before each Mamba layer, the DNA features are modulated by the cell-type RNA embedding using Feature-wise Linear Modulation (FiLM):</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">gamma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">film_gammas</span><span class="p">[</span><span class="n">layer_idx</span><span class="p">](</span><span class="n">rna_emb</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">beta</span>  <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">film_betas</span><span class="p">[</span><span class="n">layer_idx</span><span class="p">](</span><span class="n">rna_emb</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -1189,7 +1189,7 @@
 <p class="admonition-title">Why Per-Layer?</p>
 <p>Applying FiLM at every layer allows the network to learn <strong>hierarchical cell-type features</strong>. Layer 1 might learn coarse cell-type patterns (e.g., "is this a stem cell?"), while Layer 4 learns fine-grained, context-specific effects.</p>
 </div>
-<h2 id="2-bidirectional-scanning">2. Bidirectional Scanning<a class="headerlink" href="#2-bidirectional-scanning" title="Permanent link">&para;</a></h2>
+<h2 id="2-bidirectional-scanning">2. Bidirectional Scanning</h2>
 <p>DNA is symmetric: a peak at position <span class="arithmatex">\(X\)</span> is influenced by sequence features both upstream and downstream. Mamba is inherently unidirectional, so Deep-H runs two Mamba blocks in parallel:</p>
 <ol>
 <li><strong>Forward:</strong> Scans <span class="arithmatex">\(5' \rightarrow 3'\)</span></li>
@@ -1199,7 +1199,7 @@
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">bwd_out</span> <span class="o">=</span> <span class="n">checkpoint</span><span class="p">(</span><span class="n">bwd_layer</span><span class="p">,</span> <span class="n">dna_cond</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">use_reentrant</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">dna_feat</span> <span class="o">=</span> <span class="n">dna_feat</span> <span class="o">+</span> <span class="n">fwd_out</span> <span class="o">+</span> <span class="n">bwd_out</span>
 </span></code></pre></div>
-<h2 id="3-position-specific-cross-attention">3. Position-Specific Cross-Attention<a class="headerlink" href="#3-position-specific-cross-attention" title="Permanent link">&para;</a></h2>
+<h2 id="3-position-specific-cross-attention">3. Position-Specific Cross-Attention</h2>
 <p>After the 4 BiMamba layers, Deep-H uses a <strong>Cross-Attention</strong> module where DNA positions query RNA tokens:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">rna_tokens</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rna_to_tokens</span><span class="p">(</span><span class="n">rna_emb</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_rna_tokens</span><span class="p">,</span> <span class="mi">256</span><span class="p">)</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">cross_out</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cross_attn</span><span class="p">(</span><span class="n">query</span><span class="o">=</span><span class="n">dna_feat</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">rna_tokens</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">rna_tokens</span><span class="p">)</span>
