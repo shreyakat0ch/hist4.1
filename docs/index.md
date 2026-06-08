@@ -4,7 +4,10 @@ hide:
   - toc
 ---
 
-# Deep-H
+<h1 class="deeph-title">
+  <img src="assets/images/deeph-logo.svg" alt="" aria-hidden="true" />
+  <span>Deep-H</span>
+</h1>
 
 <p class="hero-subtitle">
 Predicting cell-type-specific histone landscapes directly from DNA sequence and RNA expression profiles.
@@ -18,8 +21,8 @@ Predicting cell-type-specific histone landscapes directly from DNA sequence and 
   <span class="hero-badge badge-sky">Dual-Head Output</span>
 </div>
 
-<div class="diagram-container">
-  <img src="assets/images/Presentation13.png" alt="Deep-H - DNA to Neural Network" style="width: 100%; max-width: 1200px; border-radius: 8px;" />
+<div class="diagram-container hero-visual">
+  <img src="assets/images/Presentation13.png" alt="Deep-H - DNA to neural network" />
 </div>
 
 ## What is Deep-H?
@@ -30,11 +33,11 @@ Deep-H is an advanced deep learning framework designed to predict **four key his
 2. **Spatial track predictions** - Generating a detailed binary map that pinpoints exactly *where* these peaks occur at a precise 64 bp resolution.
 
 <div class="diagram-container">
-  <img src="assets/images/Presentation3.png" alt="Deep-H Architecture" style="width: 100%; max-width: 800px; border-radius: 8px;" />
+  <img src="assets/images/Presentation3.png" alt="Deep-H Architecture" />
 </div>
 
 <div class="diagram-container">
-  <img src="assets/images/Presentation4.png" alt="Deep-H Data Pipeline" style="width: 100%; max-width: 800px; border-radius: 8px;" />
+  <img src="assets/images/Presentation4.png" alt="Deep-H Data Pipeline" />
 </div>
 
 ## Target Histone Marks
@@ -134,9 +137,3 @@ pip install -r requirements.txt
 # Run training
 python train.py
 ```
-
----
-
-<div style="text-align: center; padding: 32px 0; color: #94A3B8;">
-  <p>Built with PyTorch, Mamba-2, and MkDocs Material</p>
-</div>

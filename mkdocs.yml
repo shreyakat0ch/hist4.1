@@ -32,7 +32,7 @@ theme:
     - search.highlight
   icon:
     repo: fontawesome/brands/github
-    logo: material/layers
+    logo: material/dna
 
 extra_css:
   - stylesheets/extra.css
@@ -62,7 +62,7 @@ markdown_extensions:
   - md_in_html
   - tables
   - toc:
-      permalink: true
+      permalink: false
   - def_list
   - pymdownx.tasklist:
       custom_checkbox: true

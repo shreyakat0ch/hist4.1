@@ -1,0 +1,25 @@
+__pycache__/
+*.py[cod]
+
+# Generated documentation
+site/
+
+# Training outputs and large model checkpoints
+runs/
+runs1/
+runs2/
+*.pt
+*.pth
+*.ckpt
+
+# Generated preprocessing caches
+processed/
+
+# Local reference genomes and large raw datasets
+hg38/
+data/
+*.fa.fai
+*.fasta.fai
+
+# Local prediction outputs
+example_results/
