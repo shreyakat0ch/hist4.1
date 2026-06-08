@@ -18,7 +18,7 @@ A single-resolution CNN would need extremely deep stacking to capture all scales
 
 ```mermaid
 flowchart LR
-    DNA["🧬 DNA<br/>[B, 4, 32768]"] --> A["Branch A<br/>Motif Scale"]
+    DNA["DNA<br/>[B, 4, 32768]"] --> A["Branch A<br/>Motif Scale"]
     DNA --> B["Branch B<br/>Nucleosome Scale"]
     DNA --> C["Branch C<br/>Domain Scale"]
     
@@ -26,7 +26,7 @@ flowchart LR
     B --> |"[B, 256, 512]"| CAT
     C --> |"[B, 256, 512]"| CAT
     
-    CAT --> |"[B, 768, 512]"| MERGE["1×1 Conv<br/>768 → 256"]
+    CAT --> |"[B, 768, 512]"| MERGE["1x1 Conv<br/>768 → 256"]
     MERGE --> OUT["[B, 256, 512]"]
     
     style DNA fill:#FFE0E0,stroke:#FF6B6B,color:#333
@@ -46,19 +46,19 @@ Focuses on **short-range patterns** like transcription factor binding motifs (6�
 self.cnn_a = nn.Sequential(
     nn.Conv1d(4, 128, 15, stride=1, padding=7),   # k=15: TF motifs
     nn.BatchNorm1d(128), nn.GELU(),
-    nn.Conv1d(128, 256, 9, stride=4, padding=4),   # Downsample 4×
+    nn.Conv1d(128, 256, 9, stride=4, padding=4),   # Downsample 4x
     nn.BatchNorm1d(256), nn.GELU(),
-    nn.Conv1d(256, 256, 9, stride=4, padding=4),   # Downsample 4×
+    nn.Conv1d(256, 256, 9, stride=4, padding=4),   # Downsample 4x
     nn.BatchNorm1d(256), nn.GELU(),
-    nn.Conv1d(256, 256, 5, stride=4, padding=2),   # Downsample 4×
+    nn.Conv1d(256, 256, 5, stride=4, padding=2),   # Downsample 4x
     nn.BatchNorm1d(256), nn.GELU(),
 )
-# Total stride: 1 × 4 × 4 × 4 = 64
+# Total stride: 1 x 4 x 4 x 4 = 64
 # Output: [B, 256, 512]  (32768 / 64 = 512 tokens)
 ```
 
 !!! info "Receptive Field"
-    Each output token in Branch A has a receptive field of **~240 bp** - perfect for detecting clusters of TF binding sites within a promoter.
+    Each output token in Branch A has a receptive field of **~240 bp**, perfect for detecting clusters of TF binding sites within a promoter.
 
 ## Branch B - Nucleosome Scale
 
@@ -70,10 +70,10 @@ self.cnn_b = nn.Sequential(
     nn.BatchNorm1d(128), nn.GELU(),
     nn.Conv1d(128, 256, 15, stride=8, padding=7),   # k=15, stride=8: nucleosome
     nn.BatchNorm1d(256), nn.GELU(),
-    nn.Conv1d(256, 256, 9, stride=8, padding=4),    # Downsample 8×
+    nn.Conv1d(256, 256, 9, stride=8, padding=4),    # Downsample 8x
     nn.BatchNorm1d(256), nn.GELU(),
 )
-# Total stride: 1 × 8 × 8 = 64
+# Total stride: 1 x 8 x 8 = 64
 # Output: [B, 256, 512]
 ```
 
@@ -82,23 +82,23 @@ self.cnn_b = nn.Sequential(
 
 ## Branch C - Domain Scale
 
-Captures **long-range patterns** spanning kilobases - important for broad repressive marks:
+Captures **long-range patterns** spanning kilobases, important for broad repressive marks:
 
 ```python
 self.cnn_c = nn.Sequential(
     nn.Conv1d(4, 64, 31, stride=4, padding=15),    # k=31: very wide filter
     nn.BatchNorm1d(64), nn.GELU(),
-    nn.Conv1d(64, 128, 15, stride=4, padding=7),   # Downsample 4×
+    nn.Conv1d(64, 128, 15, stride=4, padding=7),   # Downsample 4x
     nn.BatchNorm1d(128), nn.GELU(),
-    nn.Conv1d(128, 256, 9, stride=4, padding=4),   # Downsample 4×
+    nn.Conv1d(128, 256, 9, stride=4, padding=4),   # Downsample 4x
     nn.BatchNorm1d(256), nn.GELU(),
 )
-# Total stride: 4 × 4 × 4 = 64
+# Total stride: 4 x 4 x 4 = 64
 # Output: [B, 256, 512]
 ```
 
 !!! note "Largest Kernel"
-    The initial k=31 convolution in Branch C spans ~31 bp in the first layer, but after strides accumulate, each output token sees a receptive field of **>2,000 bp** - capturing features at the kilobase scale relevant to H3K27me3 and H3K9me3 domains.
+    The initial k=31 convolution in Branch C spans ~31 bp in the first layer, but after strides accumulate, each output token sees a receptive field of **>2,000 bp**, capturing features at the kilobase scale relevant to H3K27me3 and H3K9me3 domains.
 
 ## Merge Projection
 
@@ -106,7 +106,7 @@ The three branch outputs are concatenated along the channel dimension and projec
 
 ```python
 self.cnn_merge = nn.Sequential(
-    nn.Conv1d(768, config.D_MODEL, 1),  # 768 → 256 via 1×1 conv
+    nn.Conv1d(768, config.D_MODEL, 1),  # 768 → 256 via 1x1 conv
     nn.BatchNorm1d(config.D_MODEL),
     nn.GELU()
 )

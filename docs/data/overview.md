@@ -10,10 +10,10 @@ The pipeline has **five major stages**, each designed to address specific challe
 
 ```mermaid
 flowchart LR
-    A["📦 Raw Data<br/>Sources"] --> B["🪟 Window<br/>Sampling"]
-    B --> C["🔬 Feature<br/>Extraction"]
-    C --> D["🔄 Data<br/>Augmentation"]
-    D --> E["📊 Model-Ready<br/>Batch"]
+    A["Raw Data<br/>Sources"] --> B["Window<br/>Sampling"]
+    B --> C["Feature<br/>Extraction"]
+    C --> D["Data<br/>Augmentation"]
+    D --> E["Model-Ready<br/>Batch"]
     
     style A fill:#FFE0E0,stroke:#FF6B6B,color:#333
     style B fill:#D4F5F2,stroke:#4ECDC4,color:#333
@@ -24,24 +24,20 @@ flowchart LR
 
 <div class="feature-grid">
   <div class="feature-card coral">
-    <span class="feature-icon">📦</span>
     <h3>1. Raw Data Sources</h3>
     <p>Three inputs: hg38 reference genome (FASTA), RNA-seq expression per cell line, and ChIP-seq BED files for 4 histone marks across 440 cell lines.</p>
   </div>
   <div class="feature-card turquoise">
-    <span class="feature-icon">🪟</span>
     <h3>2. Window Sampling</h3>
     <p>Balanced 50/50 peak/background sampling with smart oversampling for rare marks. 3000 peaks per mark per cell, backgrounds kept 20kb from any peak.</p>
   </div>
   <div class="feature-card lavender">
-    <span class="feature-icon">🔬</span>
     <h3>3. Feature Extraction</h3>
-    <p>DNA → one-hot [4, 32768]. RNA → top 4000 gene expression vector. Targets → scalar log₂(signal+1) + binary track at 64bp bins.</p>
+    <p>DNA → one-hot [4, 32768]. RNA → top 4000 gene expression vector. Targets → scalar log2(signal+1) + binary track at 64bp bins.</p>
   </div>
   <div class="feature-card golden">
-    <span class="feature-icon">🔄</span>
     <h3>4. Augmentation</h3>
-    <p>Random offset ±2000bp for translation invariance + 50% reverse complement flip. Both DNA and track targets are flipped together.</p>
+    <p>Random offset +/-2000bp for translation invariance + 50% reverse complement flip. Both DNA and track targets are flipped together.</p>
   </div>
 </div>
 

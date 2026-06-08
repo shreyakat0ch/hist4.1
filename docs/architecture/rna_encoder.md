@@ -9,13 +9,13 @@ The same DNA sequence can have **completely different histone marks** in differe
 - **chr1:1,000,000** in an embryonic stem cell → H3K4me3 (active)
 - **chr1:1,000,000** in a differentiated neuron → H3K27me3 (silenced)
 
-The DNA sequence is identical - what changes is the **cellular context**. RNA expression captures this context.
+The DNA sequence is identical; what changes is the **cellular context**. RNA expression captures this context.
 
 ## Architecture
 
 ```mermaid
 flowchart LR
-    RNA["📊 RNA<br/>[B, 4000]"] --> L1["Linear<br/>4000→1024"]
+    RNA["RNA<br/>[B, 4000]"] --> L1["Linear<br/>4000→1024"]
     L1 --> G1["GELU"] --> D1["Dropout(0.3)"]
     D1 --> L2["Linear<br/>1024→512"]
     L2 --> G2["GELU"] --> D2["Dropout(0.3)"]
@@ -44,13 +44,13 @@ self.rna_mlp = nn.Sequential(
 ## Design Decisions
 
 !!! tip "Why 3 Layers?"
-    Two layers (4000→512→512) compress too aggressively - the extra 1024-dimensional hidden layer provides a **bottleneck** that forces the network to learn the most informative gene expression patterns before compression.
+    Two layers (4000→512→512) compress too aggressively. The extra 1024-dimensional hidden layer provides a **bottleneck** that forces the network to learn the most informative gene expression patterns before compression.
 
 !!! info "Why 4,000 Genes?"
     The top 4,000 most variable genes across all 440 cell lines capture >95% of the variance in cell-type identity. Using all ~20,000 genes adds noise from housekeeping genes that don't distinguish cell types.
 
 !!! warning "Dropout at 0.3"
-    Aggressive dropout prevents the RNA encoder from memorizing cell-line-specific noise. At inference time, the model must rely on **general expression patterns** - making it more robust to unseen cell types.
+    Aggressive dropout prevents the RNA encoder from memorizing cell-line-specific noise. At inference time, the model must rely on **general expression patterns**, making it more robust to unseen cell types.
 
 ## How the RNA Embedding is Used
 

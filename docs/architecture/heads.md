@@ -2,7 +2,7 @@
 
 After the BiMamba and Cross-Attention layers, the 512 DNA tokens (each representing 64 bp) contain rich, cell-type-aware contextual information. Deep-H forks this representation into two independent heads: a **Scalar Head** and a **Track Head**.
 
-## 📍 1. Track Head (Spatial Localization)
+## 1. Track Head (Spatial Localization)
 
 The Track Head predicts *where* peaks are located at high resolution (64 bp bins).
 
@@ -22,9 +22,9 @@ track_logits = self.track_head(track_feat.transpose(1, 2))
 ```
 
 !!! info "Why 1x1 Convolution?"
-    A 1x1 convolution acts as a position-wise linear layer. It independently maps the 256-dimensional feature vector at *each* of the 512 spatial bins into 4 logits (one for each histone mark). There is no pooling - the spatial resolution is perfectly preserved.
+    A 1x1 convolution acts as a position-wise linear layer. It independently maps the 256-dimensional feature vector at *each* of the 512 spatial bins into 4 logits (one for each histone mark). There is no pooling, the spatial resolution is perfectly preserved.
 
-## 🎯 2. Scalar Heads (Peak Intensity)
+## 2. Scalar Heads (Peak Intensity)
 
 The Scalar Head predicts the overall intensity `log2(signal + 1)` of each mark within the window.
 

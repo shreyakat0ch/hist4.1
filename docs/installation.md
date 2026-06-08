@@ -6,22 +6,18 @@ This guide covers everything you need to set up Deep-H from scratch on a machine
 
 <div class="feature-grid">
   <div class="feature-card coral">
-    <span class="feature-icon">🖥️</span>
     <h3>GPU</h3>
-    <p>NVIDIA GPU with <strong>≥24 GB VRAM</strong> (A100, A6000, or RTX 4090 recommended). Training uses mixed-precision (FP16) via PyTorch AMP.</p>
+    <p>NVIDIA GPU with <strong>>=24 GB VRAM</strong> (A100, A6000, or RTX 4090 recommended). Training uses mixed-precision (FP16) via PyTorch AMP.</p>
   </div>
   <div class="feature-card turquoise">
-    <span class="feature-icon">💾</span>
     <h3>RAM</h3>
-    <p><strong>≥64 GB</strong> system RAM recommended. The genome cache and 440 cell-line peak indexes consume significant memory.</p>
+    <p><strong>>=64 GB</strong> system RAM recommended. The genome cache and 440 cell-line peak indexes consume significant memory.</p>
   </div>
   <div class="feature-card lavender">
-    <span class="feature-icon">💿</span>
     <h3>Storage</h3>
-    <p><strong>≥100 GB</strong> free disk space for raw data (ChIP-seq BED files, FASTA genome, RNA-seq expression matrices).</p>
+    <p><strong>>=100 GB</strong> free disk space for raw data (ChIP-seq BED files, FASTA genome, RNA-seq expression matrices).</p>
   </div>
   <div class="feature-card golden">
-    <span class="feature-icon">🐍</span>
     <h3>Python</h3>
     <p><strong>Python 3.10+</strong> with CUDA 11.8 or 12.x. Conda/Mamba environment recommended for clean dependency management.</p>
   </div>
@@ -75,7 +71,7 @@ pip install mamba-ssm
 ```
 
 !!! note "Compilation Time"
-    `mamba-ssm` compiles CUDA kernels during installation. This may take **5–10 minutes** and requires a working `nvcc` (NVIDIA CUDA compiler). If compilation fails, ensure your CUDA toolkit matches your PyTorch CUDA version.
+    `mamba-ssm` compiles CUDA kernels during installation. This may take **5-10 minutes** and requires a working `nvcc` (NVIDIA CUDA compiler). If compilation fails, ensure your CUDA toolkit matches your PyTorch CUDA version.
 
 ## Step 4 - Install Remaining Dependencies
 
@@ -85,13 +81,13 @@ pip install numpy pandas scikit-learn tqdm pyfaidx
 
 | Package | Version | Purpose |
 |---------|---------|---------|
-| `torch` | ≥2.0 | Deep learning framework |
-| `mamba-ssm` | ≥2.0 | Mamba-2 selective state space model |
-| `numpy` | ≥1.24 | Array operations |
-| `pandas` | ≥1.5 | Data manipulation |
-| `scikit-learn` | ≥1.2 | Evaluation metrics (AUPRC, MCC, F1) |
-| `tqdm` | ≥4.64 | Progress bars |
-| `pyfaidx` | ≥0.7 | Fast indexed FASTA access |
+| `torch` | >=2.0 | Deep learning framework |
+| `mamba-ssm` | >=2.0 | Mamba-2 selective state space model |
+| `numpy` | >=1.24 | Array operations |
+| `pandas` | >=1.5 | Data manipulation |
+| `scikit-learn` | >=1.2 | Evaluation metrics (AUPRC, MCC, F1) |
+| `tqdm` | >=4.64 | Progress bars |
+| `pyfaidx` | >=0.7 | Fast indexed FASTA access |
 
 ## Step 5 - Prepare Reference Data
 
@@ -139,12 +135,12 @@ data/
 │   └── H3K9me3.bed
 ├── cell_line_2/
 │   ├── H3K27ac.bed
-│   └── H3K4me3.bed       ← not all marks required
+│   └── H3K4me3.bed       <- not all marks required
 └── ...                     (440 cell lines)
 ```
 
 !!! info "Missing Marks Are Handled"
-    Deep-H uses a **mask-based loss** - cell lines that are missing certain histone marks are automatically excluded from those marks' loss computation. You do not need complete data for all 4 marks.
+    Deep-H uses a **mask-based loss**. Cell lines that are missing certain histone marks are automatically excluded from those marks' loss computation. You do not need complete data for all 4 marks.
 
 ## Step 7 - Run Preprocessing
 

@@ -6,7 +6,7 @@ Once windows are sampled, Deep-H extracts features and applies augmentations to 
 
 For each sampled window `(cell_line, chromosome, center)`, Deep-H extracts:
 
-### 🧬 DNA Input: One-Hot Encoding
+### 1. DNA Input: One-Hot Encoding
 
 The 32,768 bp DNA sequence is converted into a `[4, 32768]` one-hot tensor:
 
@@ -20,11 +20,11 @@ _ONE_HOT_TABLE = np.eye(5, 4, dtype=np.float32)
 #          [0, 1, 0, 0]
 #          [0, 0, 1, 0]
 #          [0, 0, 0, 1]
-#          [0, 0, 0, 0]  ← N (unknown) = zero vector
+#          [0, 0, 0, 0]  <- N (unknown) = zero vector
 ```
 
 !!! tip "GPU-Optimized Encoding"
-    Deep-H stores DNA as **uint8 indices** and performs one-hot encoding lazily on the GPU via `F.one_hot()`. This reduces CPU→GPU transfer bandwidth by 4× compared to sending pre-encoded float tensors.
+    Deep-H stores DNA as **uint8 indices** and performs one-hot encoding lazily on the GPU via `F.one_hot()`. This reduces CPU->GPU transfer bandwidth by 4x compared to sending pre-encoded float tensors.
 
     ```python
     # In model.py forward():
@@ -33,7 +33,7 @@ _ONE_HOT_TABLE = np.eye(5, 4, dtype=np.float32)
                  )[:, :, :4].permute(0, 2, 1).float()
     ```
 
-### 📊 RNA Input: Expression Vector
+### 2. RNA Input: Expression Vector
 
 The cell line's RNA fingerprint is a pre-computed `[4000]` float vector:
 
@@ -44,13 +44,13 @@ rna = self.rna_map.get(cell, self._dummy_rna)  # [4000]
 | Property | Value |
 |----------|-------|
 | Dimension | 4,000 (top variable genes) |
-| Scale | log₂(TPM + 1) |
+| Scale | log2(TPM + 1) |
 | Missing cells | Zero vector (rare) |
 | Normalization | Pre-normalized across dataset |
 
-### 🎯 Scalar Target: Peak Intensity
+### 3. Scalar Target: Peak Intensity
 
-For each of the 4 histone marks, the target is the **log₂(signal + 1)** value at the window center:
+For each of the 4 histone marks, the target is the **log2(signal + 1)** value at the window center:
 
 ```python
 raw_target = self._cell_index[cell].lookup_signal(
@@ -58,10 +58,10 @@ raw_target = self._cell_index[cell].lookup_signal(
 )  # [4] - one value per mark
 ```
 
-!!! note "Why log₂(signal + 1)?"
+!!! note "Why log2(signal + 1)?"
     ChIP-seq signal values span 4+ orders of magnitude. Log-transformation compresses this range and makes Huber loss equally sensitive to fold-changes at all intensity levels. The `+1` prevents log(0).
 
-### 📍 Track Target: Binary Peak Map
+### 4. Track Target: Binary Peak Map
 
 A `[4, 512]` binary tensor indicating which of the 512 spatial bins (64 bp each) overlap a peak:
 
@@ -77,10 +77,10 @@ track_target, track_valid = self._cell_index[cell].lookup_track(
 ```
 Window: |-------- 32,768 bp --------|
 Bins:   |1|2|3|4|...............512|   (64 bp each)
-Track:  |0|0|1|1|1|1|0|0|0|1|1|0|...|  ← 1 = peak present
+Track:  |0|0|1|1|1|1|0|0|0|1|1|0|...|  <- 1 = peak present
 ```
 
-### 🎭 Validity Mask
+### 5. Validity Mask
 
 A `[4]` binary mask indicating which marks have ground-truth data for this cell line:
 
@@ -95,7 +95,7 @@ mask = (raw_target != -1.0).astype(np.float32)  # [4]
 
 Deep-H applies two augmentations to improve generalization:
 
-### 1. Random Offset (±2,000 bp)
+### 1. Random Offset (+/- 2,000 bp)
 
 ```python
 if self.training and config.AUGMENT_OFFSET_MAX_BP > 0:
@@ -106,13 +106,13 @@ if self.training and config.AUGMENT_OFFSET_MAX_BP > 0:
 ```
 
 !!! example "Why Random Offset?"
-    The model should learn that a peak is a peak regardless of its exact position within the 32 kb window. A ±2 kb jitter (6% of window size) forces the model to be translation-invariant without losing the peak from the window entirely.
+    The model should learn that a peak is a peak regardless of its exact position within the 32 kb window. A +/- 2 kb jitter (6% of window size) forces the model to be translation-invariant without losing the peak from the window entirely.
 
 ### 2. Reverse Complement (50% Probability)
 
 ```python
 if self.training and config.AUGMENT_RC and random.random() < 0.5:
-    # Complement: A↔T, C↔G
+    # Complement: A<->T, C<->G
     comp_table = np.array([3, 2, 1, 0, 4], dtype=np.uint8)
     dna_indices = comp_table[dna_indices[::-1]].copy()
     # Flip track target to match
@@ -132,7 +132,7 @@ The DataLoader yields batches of:
 |--------|-------|------|-------------|
 | `dna` | `[B, 32768]` | uint8 | DNA indices (one-hot on GPU) |
 | `rna` | `[B, 4000]` | float32 | RNA expression vector |
-| `target` | `[B, 4]` | float32 | Scalar targets (log₂ scale) |
+| `target` | `[B, 4]` | float32 | Scalar targets (log2 scale) |
 | `mask` | `[B, 4]` | float32 | Mark availability mask |
 | `track_target` | `[B, 4, 512]` | float32 | Binary track labels |
 | `track_valid` | `[B, 4]` | float32 | Track availability mask |
@@ -155,7 +155,7 @@ train_loader = DataLoader(
     <span class="stat-label">Batch Size</span>
   </div>
   <div class="stat-card stat-turquoise">
-    <span class="stat-value">×4</span>
+    <span class="stat-value">x4</span>
     <span class="stat-label">Grad Accum</span>
   </div>
   <div class="stat-card stat-lavender">

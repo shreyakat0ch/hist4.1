@@ -1,12 +1,12 @@
 # Data Construction
 
-This page explains how Deep-H constructs its training dataset from raw biological data - covering the three data sources and the window sampling strategy that balances peak-rich and background regions.
+This page explains how Deep-H constructs its training dataset from raw biological data, covering the three data sources and the window sampling strategy that balances peak-rich and background regions.
 
 ## Raw Data Sources
 
 Deep-H requires three types of input data:
 
-### 🧬 1. Reference Genome (hg38)
+### 1. Reference Genome (hg38)
 
 The human reference genome provides the DNA sequence context for every training window.
 
@@ -19,7 +19,7 @@ hg38.fa - 3.1 billion base pairs
 ```
 
 !!! info "Genome Cache"
-    For speed, Deep-H pre-converts the FASTA into a **binary cache** (`genome_hg38.bin`) at first run. This enables O(1) random access to any genomic coordinate - critical for the DataLoader's 16 parallel workers.
+    For speed, Deep-H pre-converts the FASTA into a **binary cache** (`genome_hg38.bin`) at first run. This enables O(1) random access to any genomic coordinate, critical for the DataLoader's 16 parallel workers.
 
     ```python
     # genome_cache.py
@@ -30,7 +30,7 @@ hg38.fa - 3.1 billion base pairs
             return self.mmap[offset:offset+length]
     ```
 
-### 📊 2. RNA-seq Expression Profiles
+### 2. RNA-seq Expression Profiles
 
 Each cell line has a **4,000-dimensional expression vector** representing the most variable genes across all 440 cell lines.
 
@@ -47,7 +47,7 @@ rna_map = {
 !!! tip "Why Top 4,000 Genes?"
     Using all ~20,000 genes would add unnecessary noise. The top 4,000 most variable genes capture >95% of the cell-type identity information while keeping the input dimension manageable.
 
-### 📋 3. ChIP-seq BED Files (Ground Truth)
+### 3. ChIP-seq BED Files (Ground Truth)
 
 For each cell line, BED files define the **genomic coordinates where each histone mark is present**:
 
@@ -78,7 +78,7 @@ chr1    180700   181200   .    3.8    .    ...
 </div>
 
 !!! warning "Not All Marks Available"
-    Some cell lines only have data for 1–3 of the 4 marks. Deep-H handles this gracefully with a **validity mask** - missing marks are excluded from loss computation during training.
+    Some cell lines only have data for 1-3 of the 4 marks. Deep-H handles this gracefully with a **validity mask**; missing marks are excluded from loss computation during training.
 
 ---
 
@@ -89,12 +89,12 @@ The most critical design decision in Deep-H's data pipeline is **how we sample t
 ### The Class Imbalance Problem
 
 ```mermaid
-pie title "Naive Random Sampling"
+pie title "Window Sampling Distribution"
     "Background (No Peaks)" : 98.5
     "Peak Regions" : 1.5
 ```
 
-Active marks like H3K27ac have tens of thousands of peaks per cell line, but repressive marks like H3K9me3 may have only **50–200 peaks** in some cell lines.
+Active marks like H3K27ac have tens of thousands of peaks per cell line, but repressive marks like H3K9me3 may have only **50-200 peaks** in some cell lines.
 
 ### Deep-H's Balanced Sampling
 
@@ -111,7 +111,7 @@ MAX_PEAKS_PER_MARK_PER_CELL = 3000
   <div class="step-number step-coral">1</div>
   <div>
     <h3>Peak Window Sampling</h3>
-    <p>For each cell line and each mark, sample up to <strong>3,000 peaks</strong>. If a mark has fewer peaks (common for H3K27me3/H3K9me3), <strong>oversample with replacement</strong> up to 3× the available peaks.</p>
+    <p>For each cell line and each mark, sample up to <strong>3,000 peaks</strong>. If a mark has fewer peaks (common for H3K27me3/H3K9me3), <strong>oversample with replacement</strong> up to 3x the available peaks.</p>
     <span class="chip chip-coral">50% of total windows</span>
   </div>
 </div>
@@ -120,7 +120,7 @@ MAX_PEAKS_PER_MARK_PER_CELL = 3000
   <div class="step-number step-turquoise">2</div>
   <div>
     <h3>Background Window Sampling</h3>
-    <p>Sample background windows from random genomic locations that are <strong>≥20 kb from any peak</strong> of any mark. This margin ensures the model learns genuine background, not the edges of broad peaks.</p>
+    <p>Sample background windows from random genomic locations that are <strong>>=20 kb from any peak</strong> of any mark. This margin ensures the model learns genuine background, not the edges of broad peaks.</p>
     <span class="chip chip-turquoise">50% of total windows</span>
   </div>
 </div>
@@ -146,7 +146,7 @@ Without oversampling, the training distribution is heavily skewed:
 | H3K9me3 | 150 | <1% | 25% |
 
 !!! tip "Key Insight"
-    Oversampling with replacement + random offset augmentation (±2000 bp) means the model sees the same peak **multiple times** but with **different surrounding DNA context** each time - preventing memorization while ensuring rare marks get adequate training signal.
+    Oversampling with replacement + random offset augmentation (+/-2000 bp) means the model sees the same peak **multiple times** but with **different surrounding DNA context** each time, preventing memorization while ensuring rare marks get adequate training signal.
 
 ### Cache Validation
 

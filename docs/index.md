@@ -4,7 +4,7 @@ hide:
   - toc
 ---
 
-# 🤖 Deep-H
+# Deep-H
 
 <p class="hero-subtitle">
 A cell-type-aware deep learning framework that predicts histone modification landscapes from DNA sequence and RNA expression profiles.
@@ -19,7 +19,7 @@ A cell-type-aware deep learning framework that predicts histone modification lan
 </div>
 
 <div class="diagram-container">
-  <img src="assets/images/hero_banner_new.png" alt="Deep-H - DNA to Neural Network" style="width: 100%; max-width: 600px; border-radius: 8px;" />
+  <img src="assets/images/Presentation13.png" alt="Deep-H - DNA to Neural Network" style="width: 100%; max-width: 600px; border-radius: 8px;" />
 </div>
 
 ## What is Deep-H?
@@ -36,6 +36,7 @@ Deep-H is an advanced deep learning framework designed to predict **four key his
 <div class="diagram-container">
   <img src="assets/images/Presentation4.png" alt="Deep-H Data Pipeline" style="width: 100%; max-width: 800px; border-radius: 8px;" />
 </div>
+
 ## Target Histone Marks
 
 <div class="feature-grid">
@@ -89,26 +90,26 @@ Deep-H is an advanced deep learning framework designed to predict **four key his
 ## Why Deep-H?
 
 !!! tip "Cell-Type Awareness"
-    Unlike models that only see DNA, Deep-H conditions on **RNA expression** at three levels of the network - enabling it to predict histone marks for **any cell type**, not just the ones it was trained on.
+    Unlike models that only see DNA, Deep-H conditions on **RNA expression** at three levels of the network, enabling it to predict histone marks for **any cell type**, not just the ones it was trained on.
 
 !!! info "Bidirectional State Space Model"
     Deep-H uses **Mamba-2**, a state-of-the-art selective state space model, for O(L) sequence processing. Bidirectional scanning captures both upstream and downstream regulatory context.
 
 !!! example "Dual-Head Architecture"
-    Simultaneously predicts **scalar intensity** (how strong is the signal?) and **spatial track** (where exactly are the peaks?) - giving researchers both the big picture and the fine details.
+    Simultaneously predicts **scalar intensity** (how strong is the signal?) and **spatial track** (where exactly are the peaks?), giving researchers both the big picture and the fine details.
 
 ## Architecture at a Glance
 
 ```mermaid
 flowchart LR
-    A["🧬 DNA<br/>32,768 bp"] --> B["Multi-Resolution<br/>CNN Stem"]
-    B --> C["Cell-Conditioned<br/>BiMamba-2 (×4)"]
-    D["📊 RNA<br/>4,000 genes"] --> E["RNA MLP<br/>Encoder"]
+    A["DNA<br/>32,768 bp"] --> B["Multi-Resolution<br/>CNN Stem"]
+    B --> C["Cell-Conditioned<br/>BiMamba-2 (x4)"]
+    D["RNA<br/>4,000 genes"] --> E["RNA MLP<br/>Encoder"]
     E -->|"FiLM γ,β"| C
     C --> F["Cross-Attention"]
     E -->|"RNA Tokens"| F
-    F --> G["🎯 Scalar Head<br/>Peak Intensity"]
-    F --> H["📍 Track Head<br/>Peak Location"]
+    F --> G["Scalar Head<br/>Peak Intensity"]
+    F --> H["Track Head<br/>Peak Location"]
     
     style A fill:#FFE0E0,stroke:#FF6B6B,color:#333
     style D fill:#D4F5F2,stroke:#4ECDC4,color:#333
@@ -137,5 +138,5 @@ python train.py
 ---
 
 <div style="text-align: center; padding: 32px 0; color: #94A3B8;">
-  <p>Built with 💜 using PyTorch, Mamba-2, and MkDocs Material</p>
+  <p>Built with PyTorch, Mamba-2, and MkDocs Material</p>
 </div>

@@ -2,30 +2,24 @@
 
 The Deep-H training pipeline is optimized for stability and performance on highly imbalanced multi-task epigenomic datasets.
 
-
-
 ## Performance Optimizations
 
 Deep-H leverages several PyTorch features to maximize GPU utilization and training speed:
 
 <div class="feature-grid">
   <div class="feature-card coral">
-    <span class="feature-icon">⚡</span>
     <h3>Automatic Mixed Precision (AMP)</h3>
     <p>Forward passes run in `float16` to halve memory usage and double throughput on Tensor Cores, while gradients are scaled to prevent underflow.</p>
   </div>
   <div class="feature-card turquoise">
-    <span class="feature-icon">🚀</span>
     <h3>Gradient Checkpointing</h3>
     <p>Mamba layers use PyTorch's `checkpoint()` to trade minor compute overhead for massive memory savings, allowing longer sequences.</p>
   </div>
   <div class="feature-card lavender">
-    <span class="feature-icon">📦</span>
     <h3>Gradient Accumulation</h3>
     <p>Physical batch size is 256 (memory limit), but gradients are accumulated over 4 steps for an <strong>effective batch size of 1024</strong>, stabilizing the multi-task loss.</p>
   </div>
   <div class="feature-card golden">
-    <span class="feature-icon">🔄</span>
     <h3>Persistent Workers</h3>
     <p>The DataLoader uses 16 workers with `persistent_workers=True` and `file_system` sharing strategy to eliminate epoch-to-epoch startup latency.</p>
   </div>
@@ -35,7 +29,7 @@ Deep-H leverages several PyTorch features to maximize GPU utilization and traini
 
 The optimizer uses a **Warmup-Cosine** schedule (`SequentialLR`):
 
-1. **Warmup Phase:** Linearly increases from $1\times 10^{-6}$ to $3\times 10^{-4}$ over the first 3,000 steps. This prevents early divergence when the network is randomly initialized.
+1. **Warmup Phase:** Linearly increases from 1e-6 to 3e-4 over the first 3,000 steps. This prevents early divergence when the network is randomly initialized.
 2. **Cosine Decay Phase:** Gradually decays the learning rate following a cosine curve for the remainder of the 50 epochs, allowing fine-grained convergence at the end of training.
 
 ```python

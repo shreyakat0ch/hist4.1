@@ -14,7 +14,7 @@ flowchart TD
     RNA["RNA Embedding<br/>[B, 512]"] -->|"Linear"| F1["FiLM γ, β<br/>Layer 1"]
     
     subgraph L1 ["Layer 1"]
-        F1 --> COND1["DNA_cond = DNA × (1+γ) + β"]
+        F1 --> COND1["DNA_cond = DNA x (1+γ) + β"]
         COND1 --> FWD1["Forward Mamba-2"]
         COND1 --> REV["Reverse Sequence"] --> BWD1["Backward Mamba-2"] --> REV2["Reverse Output"]
         FWD1 & REV2 --> ADD1["Add to DNA Features"]
@@ -37,11 +37,8 @@ flowchart TD
 Before each Mamba layer, the DNA features are modulated by the cell-type RNA embedding using Feature-wise Linear Modulation (FiLM):
 
 ```python
-# Each Mamba layer gets its own γ, β
-gamma = self.film_gammas[layer_idx](rna_emb).unsqueeze(1)  # [B, 1, 256]
-beta  = self.film_betas[layer_idx](rna_emb).unsqueeze(1)   # [B, 1, 256]
-
-# Apply affine transformation
+gamma = self.film_gammas[layer_idx](rna_emb).unsqueeze(1)
+beta  = self.film_betas[layer_idx](rna_emb).unsqueeze(1)
 dna_cond = (1 + gamma) * dna_feat + beta
 ```
 
@@ -50,51 +47,29 @@ dna_cond = (1 + gamma) * dna_feat + beta
 
 ## 2. Bidirectional Scanning
 
-DNA is symmetric - a peak at position $X$ is influenced by sequence features both upstream and downstream. Mamba is inherently unidirectional, so Deep-H runs two Mamba blocks in parallel:
+DNA is symmetric: a peak at position $X$ is influenced by sequence features both upstream and downstream. Mamba is inherently unidirectional, so Deep-H runs two Mamba blocks in parallel:
 
 1. **Forward:** Scans $5' \rightarrow 3'$
 2. **Backward:** Sequence is flipped, scanned $5' \rightarrow 3'$, then output is flipped back.
 
 ```python
-# Forward pass with gradient checkpointing for memory efficiency
 fwd_out = checkpoint(fwd_layer, dna_cond, use_reentrant=False)
-
-# Backward pass (flip -> mamba -> flip)
-bwd_out = checkpoint(
-    bwd_layer, dna_cond.flip(1), use_reentrant=False
-).flip(1)
-
-# Residual connection
+bwd_out = checkpoint(bwd_layer, dna_cond.flip(1), use_reentrant=False).flip(1)
 dna_feat = dna_feat + fwd_out + bwd_out
 ```
 
 ## 3. Position-Specific Cross-Attention
 
-FiLM applies the *same* γ and β to every position in the 512-token sequence. But biological regulation is position-specific! 
-
-To solve this, after the 4 BiMamba layers, Deep-H uses a **Cross-Attention** module where DNA positions query RNA tokens:
+After the 4 BiMamba layers, Deep-H uses a **Cross-Attention** module where DNA positions query RNA tokens:
 
 ```python
-# 1. Project RNA embedding to K "pseudo-tokens" (K=8)
-rna_tokens = self.rna_to_tokens(rna_emb).view(
-    B, self.num_rna_tokens, 256
-)  # [B, 8, 256]
-
-# 2. DNA queries RNA tokens
-cross_out, _ = self.cross_attn(
-    query=dna_feat,      # [B, 512, 256]
-    key=rna_tokens,      # [B, 8, 256]
-    value=rna_tokens     # [B, 8, 256]
-)
-
+rna_tokens = self.rna_to_tokens(rna_emb).view(B, self.num_rna_tokens, 256)
+cross_out, _ = self.cross_attn(query=dna_feat, key=rna_tokens, value=rna_tokens)
 dna_feat = self.cross_attn_norm(dna_feat + cross_out)
 ```
 
 !!! example "Biological Intuition"
-    - Token at pos 100 (contains a CpG island) attends heavily to RNA Token #1 (developmental genes).
-    - Token at pos 400 (contains a repeat element) attends heavily to RNA Token #4 (heterochromatin genes).
-    
-    This provides **genuine position × cell-type interaction**.
+    Token at pos 100 (CpG island) attends to developmental genes. Token at pos 400 (repeat element) attends to heterochromatin genes. This provides **genuine position x cell-type interaction**.
 
 ---
 

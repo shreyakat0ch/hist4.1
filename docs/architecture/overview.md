@@ -10,35 +10,35 @@ The model processes two inputs through specialized encoders and fuses them at mu
 
 ```mermaid
 flowchart TB
-    subgraph inputs ["📥 Inputs"]
-        DNA["🧬 DNA Sequence<br/>[B, 4, 32768]"]
-        RNA["📊 RNA Expression<br/>[B, 4000]"]
+    subgraph inputs ["Inputs"]
+        DNA["DNA Sequence<br/>[B, 4, 32768]"]
+        RNA["RNA Expression<br/>[B, 4000]"]
     end
 
-    subgraph dna_enc ["🔵 DNA Encoder"]
+    subgraph dna_enc ["DNA Encoder"]
         CNN_A["Branch A: Motif<br/>(k=15)"]
         CNN_B["Branch B: Nucleosome<br/>(k=15, s=8)"]
         CNN_C["Branch C: Domain<br/>(k=31)"]
         MERGE["Merge → [B, 256, 512]"]
     end
 
-    subgraph rna_enc ["🟢 RNA Encoder"]
+    subgraph rna_enc ["RNA Encoder"]
         MLP["MLP: 4000→1024→512→512"]
     end
 
-    subgraph ssm ["🟣 Cell-Conditioned BiMamba"]
+    subgraph ssm ["Cell-Conditioned BiMamba"]
         FILM["FiLM γ,β<br/>(RNA Injection #1)"]
         FWD["Forward Mamba-2"]
         BWD["Backward Mamba-2"]
     end
 
-    subgraph xattn ["🟡 Cross-Attention"]
-        CA["DNA queries × RNA tokens<br/>(RNA Injection #2)"]
+    subgraph xattn ["Cross-Attention"]
+        CA["DNA queries x RNA tokens<br/>(RNA Injection #2)"]
     end
 
-    subgraph outputs ["📤 Outputs"]
-        TRACK["📍 Track Head<br/>[B, 4, 512]"]
-        SCALAR["🎯 Scalar Head<br/>[B, 4]"]
+    subgraph outputs ["Outputs"]
+        TRACK["Track Head<br/>[B, 4, 512]"]
+        SCALAR["Scalar Head<br/>[B, 4]"]
     end
 
     DNA --> CNN_A & CNN_B & CNN_C
@@ -71,23 +71,23 @@ Deep-H's key innovation is injecting cell-type identity at **three distinct leve
 
 <div class="feature-grid">
   <div class="feature-card coral">
-    <span class="feature-icon">①</span>
+    <span class="feature-icon">1</span>
     <h3>Per-Layer FiLM Conditioning</h3>
     <p><strong>Where:</strong> Before each of the 4 BiMamba layers.<br/>
     <strong>How:</strong> RNA → γ, β → affine transform on DNA features.<br/>
-    <strong>Why:</strong> Applies the <em>same</em> cell-type modulation to every DNA position - teaches the model coarse cell-type-specific patterns.</p>
+    <strong>Why:</strong> Applies the <em>same</em> cell-type modulation to every DNA position, teaches the model coarse cell-type-specific patterns.</p>
     <span class="chip chip-coral">Global modulation</span>
   </div>
   <div class="feature-card turquoise">
-    <span class="feature-icon">②</span>
+    <span class="feature-icon">2</span>
     <h3>Cross-Attention</h3>
     <p><strong>Where:</strong> After all BiMamba layers.<br/>
     <strong>How:</strong> Each DNA position <em>independently queries</em> 8 RNA pseudo-tokens.<br/>
-    <strong>Why:</strong> A CpG island position can attend to developmental genes; a repeat position to heterochromatin genes. Genuine position × cell-type interaction.</p>
+    <strong>Why:</strong> A CpG island position can attend to developmental genes; a repeat position to heterochromatin genes. Genuine position x cell-type interaction.</p>
     <span class="chip chip-turquoise">Position-specific</span>
   </div>
   <div class="feature-card lavender">
-    <span class="feature-icon">③</span>
+    <span class="feature-icon">3</span>
     <h3>Head Concatenation</h3>
     <p><strong>Where:</strong> At each regression head.<br/>
     <strong>How:</strong> RNA embedding concatenated with pooled DNA features → MLP.<br/>
@@ -102,10 +102,10 @@ Deep-H's key innovation is injecting cell-type identity at **three distinct leve
 |-----------|-----------|----------------|---------|
 | Multi-Resolution CNN | ~1.2M | [4, 32768] → [256, 512] | Multi-scale DNA feature extraction |
 | RNA MLP | ~4.8M | [4000] → [512] | Cell-type identity compression |
-| FiLM Layers (×4) | ~0.5M | [512] → γ, β per layer | Global cell conditioning |
-| BiMamba-2 (×4) | ~5.4M | [512, 256] → [512, 256] | Bidirectional sequence modeling |
-| Cross-Attention | ~0.8M | DNA × RNA → [512, 256] | Position-specific conditioning |
-| Scalar Heads (×4) | ~1.1M | [512] → [4] | Per-mark intensity prediction |
+| FiLM Layers (x4) | ~0.5M | [512] → γ, β per layer | Global cell conditioning |
+| BiMamba-2 (x4) | ~5.4M | [512, 256] → [512, 256] | Bidirectional sequence modeling |
+| Cross-Attention | ~0.8M | DNA x RNA → [512, 256] | Position-specific conditioning |
+| Scalar Heads (x4) | ~1.1M | [512] → [4] | Per-mark intensity prediction |
 | Track Head | ~1.0M | [256, 512] → [4, 512] | Spatial peak localization |
 | **Total** | **~14.8M** | | |
 
