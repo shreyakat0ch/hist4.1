@@ -8,7 +8,6 @@ repo_name: "shreyakat0ch/hist4.1"
 
 theme:
   name: material
-  custom_dir: docs/overrides
   palette:
     - scheme: default
       primary: brown
